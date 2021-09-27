@@ -14,21 +14,22 @@ module.exports = {
 			jsx: true,
 			modules: true,
 		},
-		project: ['./tsconfig.json'],
+		project: ['tsconfig.json'],
 	},
+	plugins: ['react'],
 	extends: [
 		'eslint:recommended',
 		'plugin:react/recommended',
 		'plugin:@typescript-eslint/recommended-requiring-type-checking',
 		'prettier',
 	],
-	plugins: ['prettier', 'react'],
 	rules: {
 		'react/display-name': 'off',
 		'react/prop-types': 'off',
 		'react/react-in-jsx-scope': 'off',
 		'@typescript-eslint/no-var-requires': 'off',
 		'no-inner-declarations': 'off',
+		'no-unused-vars': 'warn',
 	},
 	settings: {
 		react: {

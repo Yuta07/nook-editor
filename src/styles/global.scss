@@ -1,0 +1,43 @@
+:root {
+	/* color */
+	--color-primary: #1d1d1f;
+	--color-secondary: #ffffff;
+	--color-gray-lighten: #cdcdcd;
+	--color-gray: #babebf;
+	--color-gray-darken: #626367;
+	--color-gray-error: #ca3422;
+	--color-gray-success: #3073b7;
+	--color-gray-main: #92af88;
+
+	/* font size */
+	--font-size-xs: 12px;
+	--font-size-s: 14px;
+	--font-size-m: 16px;
+	--font-size-l: 18px;
+	--font-size-xl: 24x;
+
+	/* font bold */
+	--font-weight-normal: 400;
+	--font-weight-bold: 700;
+}
+
+html {
+	box-sizing: border-box;
+}
+
+*,
+*:before,
+*:after {
+	box-sizing: inherit;
+}
+
+body {
+	font-family: SF Pro JP, SF Pro Display, SF Pro Icons, Hiragino Kaku Gothic Pro, ヒラギノ角ゴ Pro W3, メイリオ, Meiryo,
+		ＭＳ Ｐゴシック, Helvetica Neue, Helvetica, Arial, sans-serif;
+	font-size: 16px;
+	font-weight: 400;
+	line-height: 1.5;
+	letter-spacing: 0.01em;
+	color: var(--color-primary);
+	background-color: var(--color-secondary);
+}
