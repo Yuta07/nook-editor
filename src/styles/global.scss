@@ -1,25 +1,5 @@
-:root {
-	/* color */
-	--color-primary: #1d1d1f;
-	--color-secondary: #ffffff;
-	--color-gray-lighten: #cdcdcd;
-	--color-gray: #babebf;
-	--color-gray-darken: #626367;
-	--color-gray-error: #ca3422;
-	--color-gray-success: #3073b7;
-	--color-gray-main: #92af88;
-
-	/* font size */
-	--font-size-xs: 12px;
-	--font-size-s: 14px;
-	--font-size-m: 16px;
-	--font-size-l: 18px;
-	--font-size-xl: 24x;
-
-	/* font bold */
-	--font-weight-normal: 400;
-	--font-weight-bold: 700;
-}
+@import './mixin';
+@import './variables';
 
 html {
 	box-sizing: border-box;

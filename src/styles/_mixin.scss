@@ -1,0 +1,28 @@
+// ex) @include max-screen($breakpoint-sm) {} or @include min-screen($breakpoint-sm) {}
+
+$breakpoint-sm: 640px;
+$breakpoint-md: 768px;
+$breakpoint-lg: 1024px;
+$breakpoint-xl: 1280px;
+
+@mixin max-screen($break-point) {
+	@media screen and (max-width: $break-point) {
+		@content;
+	}
+}
+
+@mixin min-screen($break-point) {
+	@media screen and (min-width: $break-point) {
+		@content;
+	}
+}
+
+// ex) @include property-set-prefix(transition, .2s);
+
+$prefix-list: '', '-moz-', '-webkit-';
+
+@mixin property-set-prefix($name, $value) {
+	@each $prefix in $prefix-list {
+		#{$prefix}#{$name}: $value;
+	}
+}
