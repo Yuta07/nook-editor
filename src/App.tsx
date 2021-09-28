@@ -1,7 +1,9 @@
 import { Switch, Route } from 'react-router-dom'
 
-import { useAuthState } from './contexts/auth'
+import { Home } from './Home'
+import { Layout } from './components/common/Layout'
 import { Spinner } from './components/ui/Spinner'
+import { useAuthState } from './contexts/auth'
 
 export const App = () => {
 	const state = useAuthState()
@@ -12,21 +14,23 @@ export const App = () => {
 
 	if (isLoading) return <Spinner message="Now Loading..." />
 
-	return loggedIn ? (
-		<Switch>
-			<Route path="/articles/new">
-				<div>/article new path</div>
-			</Route>
-			<Route path="/articles/:article_id">
-				<div>/article show path</div>
-			</Route>
-			<Route path="/user">
-				<div>/user path</div>
-			</Route>
-		</Switch>
-	) : (
-		<>
-			<div>asdf</div>
-		</>
+	return (
+		<Layout>
+			{loggedIn ? (
+				<Switch>
+					<Route path="/articles/new">
+						<div>/article new path</div>
+					</Route>
+					<Route path="/articles/:article_id">
+						<div>/article show path</div>
+					</Route>
+					<Route path="/user">
+						<div>/user path</div>
+					</Route>
+				</Switch>
+			) : (
+				<Home />
+			)}
+		</Layout>
 	)
 }
