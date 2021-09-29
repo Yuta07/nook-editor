@@ -1,0 +1,43 @@
+@import '/src/styles/mixin';
+
+.cta-container {
+	width: 100%;
+	margin-top: 48px;
+}
+
+.cta-hero {
+	font-size: 24px;
+}
+
+.cta-how-txt {
+	margin-top: 20px;
+	font-size: var(--font-size-l);
+	text-align: center;
+}
+
+.cta-list-hero {
+	width: 320px;
+	margin: 20px auto 0;
+	font-size: var(--font-size-l);
+
+	&:first-of-type {
+		margin-top: 40px;
+	}
+}
+
+.cta-list-num {
+	width: 28px;
+	height: 28px;
+	margin-right: 20px;
+	padding: 4px;
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	border-radius: 50%;
+	background: var(--color-main);
+	color: var(--color-secondary);
+	font-size: var(--font-size-m);
+}
+
+.cta-main-image {
+}

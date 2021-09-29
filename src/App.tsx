@@ -18,14 +18,14 @@ export const App = () => {
 		<Layout>
 			{loggedIn ? (
 				<Switch>
+					<Route path="/">
+						<div>/user path</div>
+					</Route>
 					<Route path="/articles/new">
 						<div>/article new path</div>
 					</Route>
 					<Route path="/articles/:article_id">
 						<div>/article show path</div>
-					</Route>
-					<Route path="/user">
-						<div>/user path</div>
 					</Route>
 				</Switch>
 			) : (

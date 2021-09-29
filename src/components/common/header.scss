@@ -1,0 +1,30 @@
+@import '/src/styles/mixin';
+
+.header {
+	width: 100%;
+}
+
+.header-wide {
+	max-width: 960px;
+	padding: 0 40px;
+	margin: 0 auto;
+}
+
+.header-inner {
+	height: 60px;
+	display: flex;
+	align-items: center;
+}
+
+.header-inner-auth {
+	@extend .header-inner;
+
+	justify-content: space-between;
+}
+
+.header-logo-link {
+	height: inherit;
+	display: inline-flex;
+	align-items: center;
+	text-decoration: none;
+}

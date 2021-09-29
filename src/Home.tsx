@@ -1,7 +1,17 @@
+import { AuthSection } from './components/domains/home/AuthSection'
+import { Cta } from './components/domains/home/Cta'
+
+import './styles/home.scss'
+
 export const Home = () => {
 	return (
-		<div>
-			<h1>Home</h1>
+		<div className="home-container">
+			<div className="home-cta-container">
+				<Cta />
+			</div>
+			<div className="home-auth-container">
+				<AuthSection />
+			</div>
 		</div>
 	)
 }

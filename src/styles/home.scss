@@ -1,0 +1,16 @@
+@import '/src/styles/mixin';
+
+.home-container {
+	width: 100%;
+	display: flex;
+	justify-content: space-between;
+}
+
+.home-cta-container {
+	width: 400px;
+}
+
+.home-auth-container {
+	width: 400px;
+	margin-left: 80px;
+}
