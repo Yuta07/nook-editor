@@ -17,18 +17,6 @@ export const SigninSection = () => {
 
 	const dispatch = useAuthDispatch()
 
-	const handleInputChange = useCallback((e: React.FormEvent<HTMLInputElement>) => {
-		const { name, value } = e.currentTarget
-		switch (name) {
-			case 'email':
-				setEmail(value)
-				break
-			case 'password':
-				setPassword(value)
-				break
-		}
-	}, [])
-
 	useEffect(() => {
 		const abortController = new AbortController()
 
@@ -61,6 +49,18 @@ export const SigninSection = () => {
 			abortController?.abort()
 		}
 	}, [isSubmit])
+
+	const handleInputChange = useCallback((e: React.FormEvent<HTMLInputElement>) => {
+		const { name, value } = e.currentTarget
+		switch (name) {
+			case 'email':
+				setEmail(value)
+				break
+			case 'password':
+				setPassword(value)
+				break
+		}
+	}, [])
 
 	const handleSignin = (e: React.FormEvent<HTMLFormElement>) => {
 		e.preventDefault()

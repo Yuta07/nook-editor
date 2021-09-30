@@ -3,13 +3,12 @@ import classnames from 'classnames'
 
 import { SigninSection } from '../../auth/SigninSection'
 import { SignupSection } from '../../auth/SignupSection'
-import { ForgotPasswordSection } from '../../auth/ForgotPasswordSection'
 
 import './authSection.scss'
 
-type AuthTabType = 'Sign in' | 'Sign up' | 'Forgot'
+type AuthTabType = 'Sign in' | 'Sign up'
 
-const AuthTab: AuthTabType[] = ['Sign in', 'Sign up', 'Forgot']
+const AuthTab: AuthTabType[] = ['Sign in', 'Sign up']
 
 const AuthSectionUI: VFC<{ authType: AuthTabType }> = ({ authType }) => {
 	switch (authType) {
@@ -17,8 +16,6 @@ const AuthSectionUI: VFC<{ authType: AuthTabType }> = ({ authType }) => {
 			return <SigninSection />
 		case 'Sign up':
 			return <SignupSection />
-		case 'Forgot':
-			return <ForgotPasswordSection />
 		default:
 			return <SigninSection />
 	}
