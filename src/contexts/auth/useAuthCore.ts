@@ -1,18 +1,22 @@
 import { useCallback, useReducer } from 'react'
+import { User } from '@supabase/supabase-js'
 
 export type AuthState =
 	| undefined // before init
 	| {
 			isLoading: true
 			loggedIn: false
+			user: null
 	  }
 	| {
 			isLoading: false
 			loggedIn: true
+			user: User | null
 	  }
 	| {
 			isLoading: false
 			loggedIn: false
+			user: null
 	  }
 
 const START_FETCH_AUTH = 'START_FETCH_AUTH'
@@ -30,6 +34,7 @@ type failFetchAuthAction = {
 
 type successAuthAction = {
 	type: typeof SUCCESS_AUTH
+	payload: User
 }
 
 type removeAuthAction = {
@@ -47,24 +52,28 @@ function reducer(state: AuthState, action: ActionType): AuthState {
 				...state,
 				isLoading: true,
 				loggedIn: false,
+				user: null,
 			}
 		case 'FAIL_FETCH_AUTH':
 			return {
 				...state,
 				isLoading: false,
 				loggedIn: false,
+				user: null,
 			}
 		case 'SUCCESS_AUTH':
 			return {
 				...state,
 				isLoading: false,
 				loggedIn: true,
+				user: action.payload,
 			}
 		case 'REMOVE_AUTH':
 			return {
 				...state,
 				isLoading: false,
 				loggedIn: false,
+				user: null,
 			}
 	}
 }
@@ -80,9 +89,12 @@ export const useAuthCore = () => {
 		dispatch({ type: 'FAIL_FETCH_AUTH' })
 	}, [dispatch])
 
-	const successAuth = useCallback(() => {
-		dispatch({ type: 'SUCCESS_AUTH' })
-	}, [dispatch])
+	const successAuth = useCallback(
+		(user: User) => {
+			dispatch({ type: 'SUCCESS_AUTH', payload: user })
+		},
+		[dispatch]
+	)
 
 	const removeAuth = useCallback(() => {
 		dispatch({ type: 'REMOVE_AUTH' })

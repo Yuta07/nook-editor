@@ -1,4 +1,6 @@
 import { createContext, ReactNode, useEffect, VFC } from 'react'
+import { User } from '@supabase/supabase-js'
+
 import { AuthState, useAuthCore } from './useAuthCore'
 
 import { supabase } from '../../supabase/supabaseClient'
@@ -7,31 +9,37 @@ type Props = {
 	children: ReactNode
 }
 
-type DispatchAction = {
+export type DispatchAction = {
 	startFetchAuth: () => void
 	failFetchAuth: () => void
-	successAuth: () => void
+	successAuth: (user: User) => void
 	removeAuth: () => void
-} | null
+}
 
 export const AuthStateContext = createContext<AuthState | undefined>(undefined)
-export const AuthDispatchContext = createContext<DispatchAction>(null)
+export const AuthDispatchContext = createContext<DispatchAction | undefined>(undefined)
 
 export const AuthProviderContainer: VFC<Props> = (props) => {
 	const { state, startFetchAuth, failFetchAuth, successAuth, removeAuth } = useAuthCore()
 
 	useEffect(() => {
-		try {
-			startFetchAuth()
+		const init = () => {
+			try {
+				startFetchAuth()
 
-			const session = supabase.auth.session()
+				const session = supabase.auth.session()
 
-			if (session === null) {
+				if (session && session.user) {
+					successAuth(session.user)
+				} else {
+					failFetchAuth()
+				}
+			} catch {
 				failFetchAuth()
 			}
-		} catch {
-			failFetchAuth()
 		}
+
+		init()
 	}, [])
 
 	return (

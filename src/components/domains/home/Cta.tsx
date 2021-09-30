@@ -1,12 +1,12 @@
 import './Cta.scss'
 
-const HOW_TO_TXT = ['Login.', 'Create article.', 'Post article.', 'Publish on your nook url.']
+const HOW_TO_TXT = ['Signup or Login.', 'Create article.', 'Post article.', 'Publish on your nook url.']
 
 export const Cta = () => {
 	return (
 		<div className="cta-container">
 			<h1 className="cta-hero">
-				# Leave intelligence in nook.<p className="cta-how-txt">👇 How to use. 👇</p>
+				Leave intelligence in nook.<p className="cta-how-txt">👇 How to use. 👇</p>
 			</h1>
 			{HOW_TO_TXT.map((data, i) => {
 				return (

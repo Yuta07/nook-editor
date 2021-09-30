@@ -1,0 +1,48 @@
+@import '/src/styles/mixin';
+
+.loading-root {
+	display: inline-flex;
+	align-items: center;
+}
+
+.loading-dot {
+	width: 12px;
+	height: 12px;
+	margin: 0 2px;
+	border-radius: var(--line-radius);
+	background: var(--color-gray);
+	animation: loader-dot 1.5s infinite both;
+	-webkit-animation: loader-dot 1.5s infinite both;
+}
+
+.loading-dot:nth-of-type(2) {
+	animation-delay: 0.25s;
+}
+
+.loading-dot:nth-of-type(3) {
+	animation-delay: 0.5s;
+}
+
+@keyframes loader-dot {
+	0% {
+		opacity: 0.3;
+	}
+	30% {
+		opacity: 1;
+	}
+	100% {
+		opacity: 0.3;
+	}
+}
+
+@-webkit-keyframes loader-dot {
+	0% {
+		opacity: 0.3;
+	}
+	30% {
+		opacity: 1;
+	}
+	100% {
+		opacity: 0.3;
+	}
+}

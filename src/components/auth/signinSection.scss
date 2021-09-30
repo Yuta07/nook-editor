@@ -1,0 +1,31 @@
+@import '/src/styles/mixin';
+
+.signin-section-error {
+	margin-bottom: 20px;
+	padding: 20px;
+	border-radius: 8px;
+	color: var(--color-primary);
+	background: #f9aea5;
+	font-size: var(--font-size-s);
+}
+
+.signin-section-input {
+	display: flex;
+	flex-direction: column;
+
+	input {
+		margin-top: 4px;
+	}
+
+	&:not(&:first-of-type) {
+		margin-top: 20px;
+	}
+}
+
+.signin-section-button-container {
+	margin-top: 40px;
+}
+
+.signin-section-form-button {
+	width: 100%;
+}

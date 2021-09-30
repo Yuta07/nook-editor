@@ -1,0 +1,20 @@
+@import '/src/styles/mixin';
+
+.button-root {
+	padding: 10px 20px;
+	border: none;
+	border-radius: 8px;
+	color: var(--color-secondary);
+	background: var(--color-main);
+	font-size: var(--font-size-s);
+	cursor: pointer;
+
+	&:hover {
+		background: #559689;
+		transition: 0.3s;
+	}
+
+	&:disabled {
+		background: var(--color-gray);
+	}
+}

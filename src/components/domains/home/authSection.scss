@@ -1,7 +1,43 @@
 @import '/src/styles/mixin';
 
 .auth-section-container {
+	width: 100%;
+	padding: 40px 20px;
+	border-radius: 8px;
+	background: var(--color-secondary);
+	filter: drop-shadow(2px 4px 6px rgba(0, 0, 0, 0.2));
 }
 
 .auth-section-tab {
+	padding: 4px;
+	display: inline-flex;
+	align-items: center;
+	justify-content: flex-start;
+	border-radius: 40px;
+	background: rgba(118, 193, 178, 0.3);
+}
+
+.auth-section-tab-link {
+	padding: 8px 20px;
+	font-size: var(--font-size-s);
+	font-weight: var(--font-weight-bold);
+	cursor: pointer;
+}
+
+.auth-section-selected-tab {
+	border-radius: 40px;
+	color: var(--color-secondary);
+	background: var(--color-main);
+}
+
+.auth-section-not-selected {
+	&:hover {
+		transition: 0.3s;
+		border-radius: 40px;
+		background: rgba(118, 193, 178, 0.5);
+	}
+}
+
+.auth-section-inner {
+	margin-top: 40px;
 }

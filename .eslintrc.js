@@ -28,8 +28,8 @@ module.exports = {
 		'react/prop-types': 'off',
 		'react/react-in-jsx-scope': 'off',
 		'@typescript-eslint/no-var-requires': 'off',
-		'no-inner-declarations': 'off',
-		'no-unused-vars': 'warn',
+		'@typescript-eslint/no-inner-declarations': 'off',
+		'@typescript-eslint/no-unused-vars': 'warn',
 	},
 	settings: {
 		react: {
