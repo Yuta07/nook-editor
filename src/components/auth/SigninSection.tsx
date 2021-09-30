@@ -1,4 +1,4 @@
-import React, { useCallback, useState } from 'react'
+import React, { useCallback, useEffect, useState } from 'react'
 
 import { useAuthDispatch } from '../../contexts/auth'
 import { supabase } from '../../supabase/supabaseClient'
@@ -12,7 +12,7 @@ export const SigninSection = () => {
 	const [email, setEmail] = useState('')
 	const [password, setPassword] = useState('')
 
-	const [isLoading, setIsLoading] = useState(false)
+	const [isSubmit, setIsSubmit] = useState(false)
 	const [error, setError] = useState('')
 
 	const dispatch = useAuthDispatch()
@@ -29,33 +29,43 @@ export const SigninSection = () => {
 		}
 	}, [])
 
-	const handleSignin = async (e: React.FormEvent<HTMLFormElement>) => {
+	useEffect(() => {
+		const abortController = new AbortController()
+
+		async function signin() {
+			try {
+				const { user, error } = await supabase.auth.signIn({
+					email: email,
+					password: password,
+				})
+
+				if (error) {
+					setError(error.message)
+				}
+
+				if (user) {
+					dispatch?.successAuth(user)
+				}
+			} catch {
+				setError('unknown error occured.')
+			} finally {
+				setIsSubmit(false)
+			}
+		}
+
+		if (isSubmit) {
+			void signin()
+		}
+
+		return () => {
+			abortController?.abort()
+		}
+	}, [isSubmit])
+
+	const handleSignin = (e: React.FormEvent<HTMLFormElement>) => {
 		e.preventDefault()
 
-		try {
-			setIsLoading(true)
-
-			const { user, error } = await supabase.auth.signIn({
-				email: email,
-				password: password,
-			})
-
-			if (error) {
-				setError(error.message)
-
-				return
-			}
-
-			if (user) {
-				dispatch?.successAuth(user)
-
-				return
-			}
-		} catch {
-			setError('unknown error occured.')
-		} finally {
-			setIsLoading(false)
-		}
+		setIsSubmit(true)
 	}
 
 	const disabled = email === '' || password === ''
@@ -75,7 +85,7 @@ export const SigninSection = () => {
 			/>
 			<div className="signin-section-button-container">
 				<Button name="signin-button" type="submit" disabled={disabled} className="signin-section-form-button">
-					{isLoading ? <Loading /> : 'Sign in'}
+					{isSubmit ? <Loading /> : 'Sign in'}
 				</Button>
 			</div>
 		</form>

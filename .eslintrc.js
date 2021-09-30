@@ -24,6 +24,7 @@ module.exports = {
 		'prettier',
 	],
 	rules: {
+		'no-unused-vars': ['error', { vars: 'all', args: 'none', ignoreRestSiblings: false }],
 		'react/display-name': 'off',
 		'react/prop-types': 'off',
 		'react/react-in-jsx-scope': 'off',

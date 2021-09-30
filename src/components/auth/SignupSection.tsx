@@ -13,7 +13,7 @@ export const SignupSection = () => {
 	const [email, setEmail] = useState('')
 	const [password, setPassword] = useState('')
 
-	const [isLoading, setIsLoading] = useState(false)
+	const [isSubmit, setIsSubmit] = useState(false)
 	const [error, setError] = useState('')
 
 	const [isLeastTxtEight, setIsLeastTxtEight] = useState(false)
@@ -42,6 +42,39 @@ export const SignupSection = () => {
 		}
 	}, [password])
 
+	useEffect(() => {
+		const abortController = new AbortController()
+
+		async function signup() {
+			try {
+				const { user, error } = await supabase.auth.signUp({
+					email: email,
+					password: password,
+				})
+
+				if (error) {
+					setError(error.message)
+				}
+
+				if (user) {
+					dispatch?.successAuth(user)
+				}
+			} catch {
+				setError('unknown error occured.')
+			} finally {
+				setIsSubmit(false)
+			}
+		}
+
+		if (isSubmit) {
+			void signup()
+		}
+
+		return () => {
+			abortController?.abort()
+		}
+	}, [isSubmit])
+
 	const handleInputChange = useCallback((e: React.FormEvent<HTMLInputElement>) => {
 		const { name, value } = e.currentTarget
 		switch (name) {
@@ -54,33 +87,10 @@ export const SignupSection = () => {
 		}
 	}, [])
 
-	const handleSignup = async (e: React.FormEvent<HTMLFormElement>) => {
+	const handleSignup = (e: React.FormEvent<HTMLFormElement>) => {
 		e.preventDefault()
 
-		try {
-			setIsLoading(true)
-
-			const { user, error } = await supabase.auth.signUp({
-				email: email,
-				password: password,
-			})
-
-			if (error) {
-				setError(error.message)
-
-				return
-			}
-
-			if (user) {
-				dispatch?.successAuth(user)
-
-				return
-			}
-		} catch {
-			setError('unknown error occured.')
-		} finally {
-			setIsLoading(false)
-		}
+		setIsSubmit(true)
 	}
 
 	const disabled = !isLeastTxtEight || !isLeastUpper || !isLeastOneNum || email === ''
@@ -114,7 +124,7 @@ export const SignupSection = () => {
 			</div>
 			<div className="signup-section-button-container">
 				<Button name="signup-button" type="submit" disabled={disabled} className="signup-section-form-button">
-					{isLoading ? <Loading /> : 'Sign up'}
+					{isSubmit ? <Loading /> : 'Sign up'}
 				</Button>
 			</div>
 		</form>
