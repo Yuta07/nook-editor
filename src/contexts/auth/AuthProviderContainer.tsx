@@ -14,13 +14,14 @@ export type DispatchAction = {
 	failFetchAuth: () => void
 	successAuth: (user: User) => void
 	removeAuth: () => void
+	updateAuth: (user: User) => void
 }
 
 export const AuthStateContext = createContext<AuthState | undefined>(undefined)
 export const AuthDispatchContext = createContext<DispatchAction | undefined>(undefined)
 
 export const AuthProviderContainer: VFC<Props> = (props) => {
-	const { state, startFetchAuth, failFetchAuth, successAuth, removeAuth } = useAuthCore()
+	const { state, startFetchAuth, failFetchAuth, successAuth, removeAuth, updateAuth } = useAuthCore()
 
 	useEffect(() => {
 		const init = () => {
@@ -44,7 +45,7 @@ export const AuthProviderContainer: VFC<Props> = (props) => {
 
 	return (
 		<AuthStateContext.Provider value={state}>
-			<AuthDispatchContext.Provider value={{ startFetchAuth, failFetchAuth, successAuth, removeAuth }}>
+			<AuthDispatchContext.Provider value={{ startFetchAuth, failFetchAuth, successAuth, removeAuth, updateAuth }}>
 				{props.children}
 			</AuthDispatchContext.Provider>
 		</AuthStateContext.Provider>

@@ -34,8 +34,8 @@ export const SigninSection = () => {
 				if (user) {
 					dispatch?.successAuth(user)
 				}
-			} catch {
-				setError('unknown error occured.')
+			} catch (e) {
+				alert(e)
 			} finally {
 				setIsSubmit(false)
 			}

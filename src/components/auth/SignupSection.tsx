@@ -59,8 +59,8 @@ export const SignupSection = () => {
 				if (user) {
 					dispatch?.successAuth(user)
 				}
-			} catch {
-				setError('unknown error occured.')
+			} catch (e) {
+				alert(e)
 			} finally {
 				setIsSubmit(false)
 			}
@@ -111,7 +111,7 @@ export const SignupSection = () => {
 			<div className="signup-section-password-policy">
 				<p className={isLeastTxtEight ? 'signup-section-policy-success' : 'signup-section-policy-check'}>
 					<FaRegCheckCircle size={16} color={isLeastTxtEight ? 'var(--color-main)' : 'var(--color-gray)'} />
-					Contains at least eight character.
+					Contains at least 8 characters.
 				</p>
 				<p className={isLeastUpper ? 'signup-section-policy-success' : 'signup-section-policy-check'}>
 					<FaRegCheckCircle size={16} color={isLeastUpper ? 'var(--color-main)' : 'var(--color-gray)'} />

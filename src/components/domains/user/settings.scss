@@ -1,0 +1,61 @@
+@import '/src/styles/mixin';
+
+.settings-container {
+	display: flex;
+	justify-content: space-between;
+}
+
+.settings-nav {
+	width: 168px;
+	height: 100%;
+	margin-right: 40px;
+	border: 1px solid var(--color-gray);
+	border-radius: 8px;
+}
+
+.settings-title {
+	display: block;
+	padding: 8px 10px;
+	font-weight: var(--font-weight-bold);
+}
+
+.settings-tab-type {
+	position: relative;
+	display: block;
+	padding: 8px 10px;
+	border-top: 1px solid var(--color-gray);
+	font-size: var(--font-size-s);
+	cursor: pointer;
+
+	&:hover {
+		background: var(--color-gray-lighten);
+		transition: 0.3s;
+	}
+
+	&:last-of-type {
+		border-radius: 0 0 8px 8px;
+
+		&:before {
+			height: calc(100% - 1px);
+			border-bottom-left-radius: 8px;
+		}
+	}
+}
+
+.settings-selected-tab-type {
+	@extend .settings-tab-type;
+
+	&:before {
+		content: '';
+		position: absolute;
+		top: 0;
+		bottom: 0;
+		left: 0;
+		width: 2px;
+		background: var(--color-main);
+	}
+}
+
+.settings-content {
+	width: calc(100% - 208px);
+}

@@ -14,12 +14,7 @@
 	height: 60px;
 	display: flex;
 	align-items: center;
-}
-
-.header-inner-auth {
-	@extend .header-inner;
-
-	justify-content: space-between;
+	justify-content: center;
 }
 
 .header-logo-link {

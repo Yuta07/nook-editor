@@ -16,8 +16,6 @@ const AuthSectionUI: VFC<{ authType: AuthTabType }> = ({ authType }) => {
 			return <SigninSection />
 		case 'Sign up':
 			return <SignupSection />
-		default:
-			return <SigninSection />
 	}
 }
 

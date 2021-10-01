@@ -23,6 +23,7 @@ const START_FETCH_AUTH = 'START_FETCH_AUTH'
 const FAIL_FETCH_AUTH = 'FAIL_FETCH_AUTH'
 const SUCCESS_AUTH = 'SUCCESS_AUTH'
 const REMOVE_AUTH = 'REMOVE_AUTH'
+const UPDATE_AUTH = 'UPDATE_AUTH'
 
 type startFetchAuthAction = {
 	type: typeof START_FETCH_AUTH
@@ -41,7 +42,17 @@ type removeAuthAction = {
 	type: typeof REMOVE_AUTH
 }
 
-export type ActionType = startFetchAuthAction | failFetchAuthAction | successAuthAction | removeAuthAction
+type updateAuthAction = {
+	type: typeof UPDATE_AUTH
+	payload: User
+}
+
+export type ActionType =
+	| startFetchAuthAction
+	| failFetchAuthAction
+	| successAuthAction
+	| removeAuthAction
+	| updateAuthAction
 
 const initialStateFactory: AuthState = undefined
 
@@ -75,6 +86,13 @@ function reducer(state: AuthState, action: ActionType): AuthState {
 				loggedIn: false,
 				user: null,
 			}
+		case 'UPDATE_AUTH':
+			return {
+				...state,
+				isLoading: false,
+				loggedIn: true,
+				user: action.payload,
+			}
 	}
 }
 
@@ -100,11 +118,19 @@ export const useAuthCore = () => {
 		dispatch({ type: 'REMOVE_AUTH' })
 	}, [dispatch])
 
+	const updateAuth = useCallback(
+		(user: User) => {
+			dispatch({ type: 'UPDATE_AUTH', payload: user })
+		},
+		[dispatch]
+	)
+
 	return {
 		state,
 		startFetchAuth,
 		failFetchAuth,
 		successAuth,
 		removeAuth,
+		updateAuth,
 	}
 }

@@ -1,6 +1,7 @@
 import { Switch, Route } from 'react-router-dom'
 
 import { Home } from './Home'
+import { User } from './User'
 import { Layout } from './components/common/Layout'
 import { Spinner } from './components/ui/Spinner'
 import { useAuthState } from './contexts/auth'
@@ -18,8 +19,8 @@ export const App = () => {
 		<Layout>
 			{loggedIn ? (
 				<Switch>
-					<Route path="/">
-						<div>/user path</div>
+					<Route exact={true} path="/">
+						<User />
 					</Route>
 					<Route path="/articles/new">
 						<div>/article new path</div>
