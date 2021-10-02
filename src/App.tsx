@@ -19,9 +19,7 @@ export const App = () => {
 		<Layout>
 			{loggedIn ? (
 				<Switch>
-					<Route exact={true} path="/">
-						<User />
-					</Route>
+					<Route path="/" component={() => <User />} />
 					<Route path="/articles/new">
 						<div>/article new path</div>
 					</Route>

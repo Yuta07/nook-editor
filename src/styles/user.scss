@@ -1,30 +1,37 @@
 @import '/src/styles/mixin';
 
-.settings-container {
+.user-container {
 	display: flex;
 	justify-content: space-between;
 }
 
-.settings-nav {
+.user-data-nav {
 	width: 168px;
-	height: 100%;
 	margin-right: 40px;
 	border: 1px solid var(--color-gray);
 	border-radius: 8px;
 }
 
-.settings-title {
+.user-settigns-nav {
+	@extend .user-data-nav;
+
+	margin-top: 40px;
+}
+
+.user-nav-title {
 	display: block;
 	padding: 8px 10px;
 	font-weight: var(--font-weight-bold);
 }
 
-.settings-tab-type {
+.user-tab-type {
 	position: relative;
 	display: block;
 	padding: 8px 10px;
 	border-top: 1px solid var(--color-gray);
+	color: var(--color-primary);
 	font-size: var(--font-size-s);
+	text-decoration: none;
 	cursor: pointer;
 
 	&:hover {
@@ -42,8 +49,8 @@
 	}
 }
 
-.settings-selected-tab-type {
-	@extend .settings-tab-type;
+.user-selected-tab-type {
+	@extend .user-tab-type;
 
 	&:before {
 		content: '';
@@ -56,6 +63,6 @@
 	}
 }
 
-.settings-content {
+.user-content {
 	width: calc(100% - 208px);
 }
