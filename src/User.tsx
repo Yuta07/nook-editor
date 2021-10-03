@@ -1,5 +1,5 @@
 import { VFC } from 'react'
-import { Switch, Route, Link, useRouteMatch } from 'react-router-dom'
+import { Switch, Route, Link } from 'react-router-dom'
 
 import { Account } from './components/domains/account'
 import { Articles } from './components/domains/articles'
@@ -26,26 +26,26 @@ const UserContentUI: VFC = () => {
 }
 
 export const User = () => {
-	const { path } = useRouteMatch()
+	const { pathname } = window.location
 
 	return (
 		<div className="user-container">
 			<div>
 				<nav className="user-data-nav">
 					<span className="user-nav-title">All Data</span>
-					<Link to="/" className={path === '/' ? 'user-selected-tab-type' : 'user-tab-type'}>
+					<Link to="/" className={pathname === '/' ? 'user-selected-tab-type' : 'user-tab-type'}>
 						Articles
 					</Link>
-					<Link to="/categories" className={path === 'categories' ? 'user-selected-tab-type' : 'user-tab-type'}>
-						Categorys
+					<Link to="/categories" className={pathname === '/categories' ? 'user-selected-tab-type' : 'user-tab-type'}>
+						Categories
 					</Link>
 				</nav>
 				<nav className="user-settigns-nav">
 					<span className="user-nav-title">Account Settings</span>
-					<Link to="/account" className={path === 'account' ? 'user-selected-tab-type' : 'user-tab-type'}>
+					<Link to="/account" className={pathname === '/account' ? 'user-selected-tab-type' : 'user-tab-type'}>
 						Account
 					</Link>
-					<Link to="/password" className={path === 'password' ? 'user-selected-tab-type' : 'user-tab-type'}>
+					<Link to="/password" className={pathname === '/password' ? 'user-selected-tab-type' : 'user-tab-type'}>
 						Password
 					</Link>
 				</nav>

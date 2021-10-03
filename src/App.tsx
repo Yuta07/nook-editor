@@ -19,13 +19,13 @@ export const App = () => {
 		<Layout>
 			{loggedIn ? (
 				<Switch>
-					<Route path="/" component={() => <User />} />
 					<Route path="/articles/new">
 						<div>/article new path</div>
 					</Route>
 					<Route path="/articles/:article_id">
 						<div>/article show path</div>
 					</Route>
+					<Route path="/" component={() => <User />} />
 				</Switch>
 			) : (
 				<Home />

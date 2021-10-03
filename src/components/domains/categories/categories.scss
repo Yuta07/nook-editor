@@ -1,1 +1,9 @@
 @import '/src/styles/mixin';
+
+.categories-container {
+	width: 100%;
+}
+
+.categories-hero {
+	font-size: var(--font-size-xl);
+}

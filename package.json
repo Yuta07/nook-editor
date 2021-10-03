@@ -3,6 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@editorjs/editorjs": "^2.22.2",
     "@supabase/supabase-js": "^1.23.0",
     "classnames": "^2.3.1",
     "css-loader": "^6.3.0",

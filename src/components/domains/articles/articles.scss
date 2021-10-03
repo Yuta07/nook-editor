@@ -1,1 +1,35 @@
 @import '/src/styles/mixin';
+
+.articles-container {
+	width: 100%;
+}
+
+.articles-header {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+}
+
+.articles-hero {
+	font-size: var(--font-size-xl);
+}
+
+.articles-new-button {
+	padding: 5px 10px;
+	border: none;
+	border-radius: 8px;
+	background: var(--color-main);
+	color: var(--color-secondary);
+	text-decoration: none;
+
+	&:hover {
+		background: #559689;
+		transition: 0.3s;
+	}
+}
+
+.articles-content {
+	margin-top: 12px;
+	padding-top: 20px;
+	border-top: 1px solid var(--color-gray);
+}
