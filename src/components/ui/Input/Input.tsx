@@ -17,7 +17,17 @@ type Props = {
 }
 
 export const Input = forwardRef<HTMLInputElement, InputProps>(({ className, ...props }, ref) => {
-	return <input {...props} className={classnames(className, 'input-root')} ref={ref} />
+	return (
+		<input
+			{...props}
+			className={classnames(className, 'input-root')}
+			ref={ref}
+			autoComplete="off"
+			autoCorrect="off"
+			autoCapitalize="off"
+			spellCheck="false"
+		/>
+	)
 })
 
 export const Label = forwardRef<HTMLLabelElement, LabelProps>(({ children, className, required, ...props }, ref) => {
