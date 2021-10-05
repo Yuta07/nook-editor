@@ -154,7 +154,7 @@ export const New = () => {
 						name="category-new-button"
 						type="submit"
 						className="category-new-button"
-						disabled={name === '' || isLoading}
+						disabled={name === '' || isLoading || isUploading}
 					>
 						Save Category
 					</Button>

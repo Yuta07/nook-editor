@@ -1,6 +1,7 @@
-import { useEffect, useState } from 'react'
+import { useCallback, useEffect, useState } from 'react'
+import { FaRegTrashAlt } from 'react-icons/fa'
 
-import { CategoryState } from '../../../contexts/categories'
+import { CategoryState, useCategoriesDispatch } from '../../../contexts/categories'
 import { supabase } from '../../../supabase/supabaseClient'
 
 import './card.scss'
@@ -11,6 +12,8 @@ type Props = {
 
 export const Card = ({ category }: Props) => {
 	const [imageUrl, setImageUrl] = useState<string>('')
+
+	const dispatch = useCategoriesDispatch()
 
 	useEffect(() => {
 		async function downloadImage() {
@@ -29,13 +32,43 @@ export const Card = ({ category }: Props) => {
 			}
 		}
 
+		if (category.image_url === null) return
+
 		void downloadImage()
+	}, [])
+
+	const handleClickCategoryDelete = useCallback(async () => {
+		if (window.confirm(`Are you sure you want to delete category: ${category.name}?`)) {
+			if (category.image_url) {
+				await supabase.storage.from('categories').remove([category.image_url])
+			}
+
+			const { error } = await supabase.from('categories').delete().match({ id: category.id })
+
+			if (error) {
+				throw error
+			} else {
+				dispatch?.deleteCategory(category.id)
+			}
+		}
 	}, [])
 
 	return (
 		<a className="category-card-container">
-			<img src={imageUrl} alt={`category_${category.name}`} className="category-card-image" />
+			<img
+				src={imageUrl || '/category_default.png'}
+				alt={`category_${category.name}`}
+				className="category-card-image"
+			/>
 			<h3 className="category-card-name">{category.name}</h3>
+			<button
+				name="category-delete-button"
+				type="button"
+				className="category-card-action-button"
+				onClick={handleClickCategoryDelete}
+			>
+				<FaRegTrashAlt size={18} color="var(--color-gray-darken)" />
+			</button>
 		</a>
 	)
 }
