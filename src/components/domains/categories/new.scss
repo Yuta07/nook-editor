@@ -67,8 +67,8 @@
 }
 
 .category-new-image-preview {
-	width: 196px;
-	height: 196px;
+	width: 120px;
+	height: 120px;
 	margin-left: 40px;
 	padding: 18px;
 	border-radius: 8px;
@@ -78,6 +78,7 @@
 }
 
 .category-new-button-container {
+	max-width: 480px;
 	margin-top: 20px;
 	display: flex;
 	justify-content: flex-end;

@@ -1,0 +1,18 @@
+@import '/src/styles/mixin';
+
+.category-board-container {
+	margin-top: 40px;
+	padding-top: 20px;
+	border-top: 1px solid var(--color-gray);
+}
+
+.category-board-hero {
+	font-size: var(--font-size-l);
+}
+
+.category-board-card-container {
+	width: 100%;
+	display: grid;
+	grid-template-columns: 22% 22% 22% 22%;
+	column-gap: 4%;
+}

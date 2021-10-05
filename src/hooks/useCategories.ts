@@ -36,8 +36,6 @@ export const useFetchCategories = () => {
 	}, [state])
 }
 
-export const useCreateCategory = () => {}
-
 export const useUpdateCatogory = () => {}
 
 export const useDeleteCategory = () => {}

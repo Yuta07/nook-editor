@@ -50,7 +50,14 @@ function reducer(state: CategoriesState, action: ActionType): CategoriesState {
 		case 'UPDATE_CATEGORY':
 			return { ...state, categories: null }
 		case 'DELETE_CATEGORY':
-			return { ...state, categories: null }
+			return {
+				...state,
+				categories: state.categories
+					? state.categories?.filter((category) => {
+							return category.id !== action.payload
+					  })
+					: null,
+			}
 	}
 }
 

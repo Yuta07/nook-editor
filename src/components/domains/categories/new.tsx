@@ -1,5 +1,7 @@
 import React, { useCallback, useEffect, useState } from 'react'
 
+import { useAuthState } from '../../../contexts/auth'
+import { CategoryState, useCategoriesDispatch } from '../../../contexts/categories'
 import { supabase } from '../../../supabase/supabaseClient'
 import { Button } from '../../ui/Button'
 import { Input } from '../../ui/Input'
@@ -11,7 +13,11 @@ export const New = () => {
 	const [description, setDescription] = useState('')
 	const [imageName, setImageName] = useState<string | null>(null)
 	const [imageUrl, setImageUrl] = useState<string | null>(null)
+	const [isLoading, setIsLoading] = useState(false)
 	const [isUploading, setIsUploading] = useState(false)
+
+	const user = useAuthState()?.user
+	const dispatch = useCategoriesDispatch()
 
 	useEffect(() => {
 		async function init() {
@@ -69,8 +75,32 @@ export const New = () => {
 		[imageName]
 	)
 
-	const handleSubmitCategory = (e: React.FormEvent<HTMLFormElement>) => {
+	const handleSubmitCategory = async (e: React.FormEvent<HTMLFormElement>) => {
 		e.preventDefault()
+
+		setIsLoading(true)
+
+		try {
+			const { data, error } = await supabase
+				.from('categories')
+				.insert([{ name, description, image_url: imageName, user_id: user?.id }])
+
+			if (error) {
+				alert(error)
+			} else {
+				const category = data as CategoryState[]
+				dispatch?.createCategory(category[0])
+
+				setName('')
+				setDescription('')
+				setImageName(null)
+				setImageUrl(null)
+			}
+		} catch (e) {
+			alert(e)
+		} finally {
+			setIsLoading(false)
+		}
 	}
 
 	return (
@@ -81,6 +111,7 @@ export const New = () => {
 					name="category-name"
 					value={name}
 					type="text"
+					placeholder="category name"
 					className="category-new-name"
 					onChange={handleInputChange}
 				/>
@@ -88,6 +119,7 @@ export const New = () => {
 					name="category-description"
 					value={description}
 					rows={2}
+					placeholder="category description"
 					className="category-new-description"
 					onChange={handleTextareaChange}
 				/>
@@ -118,7 +150,12 @@ export const New = () => {
 					{imageUrl ? <img src={imageUrl} alt="category-image" className="category-new-image-preview" /> : null}
 				</div>
 				<div className="category-new-button-container">
-					<Button name="category-new-button" type="submit" className="category-new-button">
+					<Button
+						name="category-new-button"
+						type="submit"
+						className="category-new-button"
+						disabled={name === '' || isLoading}
+					>
 						Save Category
 					</Button>
 				</div>
