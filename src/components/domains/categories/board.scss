@@ -12,7 +12,9 @@
 
 .category-board-card-container {
 	width: 100%;
+	margin-top: 20px;
 	display: grid;
 	grid-template-columns: 22% 22% 22% 22%;
 	column-gap: 4%;
+	row-gap: 20px;
 }

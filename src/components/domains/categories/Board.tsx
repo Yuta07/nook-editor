@@ -2,7 +2,6 @@ import { VFC } from 'react'
 
 import { Card } from './Card'
 import { CategoryState, useCategoriesState } from '../../../contexts/categories'
-import { useFetchCategories } from '../../../hooks/useCategories'
 
 import './board.scss'
 
@@ -28,8 +27,6 @@ const CategoryListUI: VFC<{ categories: CategoryState[] }> = ({ categories }) =>
 }
 
 export const Board = () => {
-	useFetchCategories()
-
 	const state = useCategoriesState()
 
 	return (

@@ -43,7 +43,7 @@ export const SignupSection = () => {
 	}, [password])
 
 	useEffect(() => {
-		const abortController = new AbortController()
+		let didCancel = false
 
 		async function signup() {
 			try {
@@ -56,7 +56,7 @@ export const SignupSection = () => {
 					setError(error.message)
 				}
 
-				if (user) {
+				if (user && !didCancel) {
 					dispatch?.successAuth(user)
 				}
 			} catch (e) {
@@ -71,7 +71,7 @@ export const SignupSection = () => {
 		}
 
 		return () => {
-			abortController?.abort()
+			didCancel = true
 		}
 	}, [isSubmit])
 

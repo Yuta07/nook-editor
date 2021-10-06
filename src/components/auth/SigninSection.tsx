@@ -18,7 +18,7 @@ export const SigninSection = () => {
 	const dispatch = useAuthDispatch()
 
 	useEffect(() => {
-		const abortController = new AbortController()
+		let didCancel = false
 
 		async function signin() {
 			try {
@@ -31,7 +31,7 @@ export const SigninSection = () => {
 					setError(error.message)
 				}
 
-				if (user) {
+				if (user && !didCancel) {
 					dispatch?.successAuth(user)
 				}
 			} catch (e) {
@@ -46,7 +46,7 @@ export const SigninSection = () => {
 		}
 
 		return () => {
-			abortController?.abort()
+			didCancel = true
 		}
 	}, [isSubmit])
 

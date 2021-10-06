@@ -1,4 +1,5 @@
 import { useCallback, useEffect, useState } from 'react'
+import { Link } from 'react-router-dom'
 import { FaRegTrashAlt } from 'react-icons/fa'
 
 import { CategoryState, useCategoriesDispatch } from '../../../contexts/categories'
@@ -54,7 +55,7 @@ export const Card = ({ category }: Props) => {
 	}, [])
 
 	return (
-		<a className="category-card-container">
+		<Link to={`/categories/${category.name}`} className="category-card-container">
 			<img
 				src={imageUrl || '/category_default.png'}
 				alt={`category_${category.name}`}
@@ -69,6 +70,6 @@ export const Card = ({ category }: Props) => {
 			>
 				<FaRegTrashAlt size={18} color="var(--color-gray-darken)" />
 			</button>
-		</a>
+		</Link>
 	)
 }

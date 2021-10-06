@@ -41,6 +41,16 @@ type ActionType = fetchCategories | createCategory | updateCategory | deleteCate
 
 const initialStateFactory: CategoriesState = { categories: null }
 
+function updateCategory(state: CategoryState[], action: CategoryState) {
+	return state.map((category) => {
+		if (category.id === action.id) {
+			return action
+		} else {
+			return category
+		}
+	})
+}
+
 function reducer(state: CategoriesState, action: ActionType): CategoriesState {
 	switch (action.type) {
 		case 'FETCH_CATEGORIES':
@@ -48,7 +58,7 @@ function reducer(state: CategoriesState, action: ActionType): CategoriesState {
 		case 'CREATE_CATEGORY':
 			return { ...state, categories: state.categories ? [...state.categories, action.payload] : [action.payload] }
 		case 'UPDATE_CATEGORY':
-			return { ...state, categories: null }
+			return { ...state, categories: state.categories ? updateCategory(state.categories, action.payload) : null }
 		case 'DELETE_CATEGORY':
 			return {
 				...state,

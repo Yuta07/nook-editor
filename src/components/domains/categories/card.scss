@@ -5,12 +5,12 @@
 	display: flex;
 	flex-direction: column;
 	align-items: center;
-	margin-top: 20px;
 	padding: 16px;
 	border-radius: 8px;
+	color: var(--color-primary);
 	background: var(--color-secondary);
 	filter: drop-shadow(2px 4px 6px rgba(0, 0, 0, 0.2));
-	list-style: none;
+	text-decoration: none;
 	cursor: pointer;
 	position: relative;
 

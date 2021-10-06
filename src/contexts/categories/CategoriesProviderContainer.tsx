@@ -2,8 +2,6 @@ import { createContext, ReactNode, VFC } from 'react'
 
 import { CategoryState, CategoriesState, useCategoriesCore } from './useCategoriesCore'
 
-import { useFetchCategories } from '../../hooks/useCategories'
-
 type Props = {
 	children: ReactNode
 }
@@ -20,8 +18,6 @@ export const CategoriesDispatchContext = createContext<DispatchAction | undefine
 
 export const CategoriesProviderContainer: VFC<Props> = (props) => {
 	const { state, fetchCategories, createCategory, updateCategory, deleteCategory } = useCategoriesCore()
-
-	useFetchCategories()
 
 	return (
 		<CategoriesStateContext.Provider value={state}>

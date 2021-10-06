@@ -30,7 +30,7 @@ module.exports = {
 		'react/react-in-jsx-scope': 'off',
 		'@typescript-eslint/no-var-requires': 'off',
 		'@typescript-eslint/no-inner-declarations': 'off',
-		'@typescript-eslint/no-unused-vars': 'warn',
+		'@typescript-eslint/no-unused-vars': 'off',
 	},
 	settings: {
 		react: {

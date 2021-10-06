@@ -4,13 +4,15 @@ import { Switch, Route, Link } from 'react-router-dom'
 import { Account } from './components/domains/account'
 import { Articles } from './components/domains/articles'
 import { Categories } from './components/domains/categories'
+import { Edit } from './components/domains/categories/Edit'
 import { Password } from './components/domains/password'
 
 import './styles/user.scss'
 
 const routes = [
 	{ path: '/', exact: true, component: Articles },
-	{ path: '/categories', exact: false, component: Categories },
+	{ path: '/categories', exact: true, component: Categories },
+	{ path: '/categories/:name', exact: false, component: Edit },
 	{ path: '/account', exact: false, component: Account },
 	{ path: '/password', exact: false, component: Password },
 ]
