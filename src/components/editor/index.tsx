@@ -20,7 +20,13 @@ export const NookEditor = () => {
 			holder: 'editorjs',
 			placeholder: 'Let`s write an awesome article!',
 			tools: {
-				header: Header, // eslint-disable-line @typescript-eslint/no-unsafe-assignment
+				header: {
+					class: Header, // eslint-disable-line @typescript-eslint/no-unsafe-assignment
+					config: {
+						levels: [2, 3, 4, 5],
+						defaultLevel: 2,
+					},
+				},
 				list: {
 					class: List, // eslint-disable-line @typescript-eslint/no-unsafe-assignment
 					inlineToolbar: true,
@@ -65,6 +71,13 @@ export const NookEditor = () => {
 					},
 				},
 			},
+			onReady: () => {
+				console.log('Editor.js is ready to work!')
+			},
+			onChange: () => {
+				console.log("Now I know that Editor's content changed!")
+			},
+			data: undefined,
 		})
 	}, [])
 
