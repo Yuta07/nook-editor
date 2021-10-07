@@ -10,7 +10,7 @@ export const ArticleNew = () => {
 	// const [content, setContent] = useState(null)
 	const [isPublish, setIsPublish] = useState(false)
 
-	const handleInputChange = useCallback((e: React.FormEvent<HTMLInputElement>) => {
+	const handleInputChange = useCallback((e: React.ChangeEvent<HTMLInputElement>) => {
 		const { name, value } = e.currentTarget
 
 		switch (name) {
@@ -19,8 +19,6 @@ export const ArticleNew = () => {
 				break
 			case 'article-word':
 				setWord(value)
-				break
-			default:
 				break
 		}
 	}, [])
@@ -51,7 +49,7 @@ export const ArticleNew = () => {
 						/>
 						<span className="article-new-slider" />
 					</label>
-					<span className="article-new-isPublish-txt">isPublish?</span>
+					<span className="article-new-isPublish-txt">{isPublish ? 'Publish' : 'Draft'}</span>
 				</div>
 			</div>
 			<div className="article-new-inner">

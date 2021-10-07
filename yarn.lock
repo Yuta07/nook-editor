@@ -1219,6 +1219,16 @@
   resolved "https://registry.yarnpkg.com/@csstools/normalize.css/-/normalize.css-10.1.0.tgz#f0950bba18819512d42f7197e56c518aa491cf18"
   integrity sha512-ij4wRiunFfaJxjB0BdrYHIH8FxBJpOwNPhhAcunlmPdXudL1WQV1qoP9un6JsEBAgQH+7UXyyjh0g7jTxXK6tg==
 
+"@editorjs/checklist@^1.3.0":
+  version "1.3.0"
+  resolved "https://registry.yarnpkg.com/@editorjs/checklist/-/checklist-1.3.0.tgz#98c08f0c6a8b62a2b1a0f181604c1a8c8edc15b1"
+  integrity sha512-087oW0oOIE5HX8llj4Eap/reFDFw8VCLlp6GU0E9GEp7f3zy2aV6KdFR+6dbYhZ50w7tSnkMpCAcSq1NXJeB4Q==
+
+"@editorjs/code@^2.7.0":
+  version "2.7.0"
+  resolved "https://registry.yarnpkg.com/@editorjs/code/-/code-2.7.0.tgz#0a21de9ac15e4533605ffcc80969513ab2142ac5"
+  integrity sha512-gXtTce915fHp3H9i4IqhTxEDbbkT2heFfYiW/bhFHsCmZDpyGzfZxi94kmrEqDmbxXjV49ZZ6GZbR26If13KJw==
+
 "@editorjs/editorjs@^2.22.2":
   version "2.22.2"
   resolved "https://registry.yarnpkg.com/@editorjs/editorjs/-/editorjs-2.22.2.tgz#bf1d10c9fa9dd1dc574c18d8f4b77fef43d8e7f6"
@@ -1227,6 +1237,46 @@
     codex-notifier "^1.1.2"
     codex-tooltip "^1.0.2"
     nanoid "^3.1.22"
+
+"@editorjs/embed@^2.4.6":
+  version "2.4.6"
+  resolved "https://registry.yarnpkg.com/@editorjs/embed/-/embed-2.4.6.tgz#7db8bc84d90c947d1fff037c96973d587168692e"
+  integrity sha512-c/1TzBBMrU1hpPHRWXlVanBhgyoPZvE2A3qHt23rMVxJVvzu13Zozj0ZOO8pL1XGcubf+Yvalxu7AURn7X3jPw==
+
+"@editorjs/header@^2.6.1":
+  version "2.6.1"
+  resolved "https://registry.yarnpkg.com/@editorjs/header/-/header-2.6.1.tgz#454a46e4dbb32ae3aa1db4d22b0ddf2cc36c3134"
+  integrity sha512-EsnyVFv5uThpU9tbQ/dUPFCQoa/sBFy2n+9tN3wOXJGx7sjea4fdcacJ2UYhO+7pCgZ+aSgmMOyGLYHUFbchvA==
+
+"@editorjs/image@^2.6.1":
+  version "2.6.1"
+  resolved "https://registry.yarnpkg.com/@editorjs/image/-/image-2.6.1.tgz#43cea656e0db30aa03a01fadcb9d8143f2cb936e"
+  integrity sha512-ZGQJAW4gzkVGjXGbY1Rl13Wt8q/mQuk+fPn3kNFspL/m9TNjpK19vBqWN3NTCe+nVF97X9WBev/qmsBzuE3Ipg==
+
+"@editorjs/inline-code@^1.3.1":
+  version "1.3.1"
+  resolved "https://registry.yarnpkg.com/@editorjs/inline-code/-/inline-code-1.3.1.tgz#4890e30d00dcaeacafbcb30459309dfd740b0d4b"
+  integrity sha512-iY6DeRmJo2Jl6sB2S9QEA9OoSp+KCHBztoY2fjPeiBcKCOKX8we5H3JQJTLxT0L/N8uJqCUiiPKgG6xvqaCn+g==
+
+"@editorjs/list@^1.6.2":
+  version "1.6.2"
+  resolved "https://registry.yarnpkg.com/@editorjs/list/-/list-1.6.2.tgz#38cb307d78ec8b6c55480c538805cdc2ff250ad1"
+  integrity sha512-OxowV0yuE11G01czYM1dEQlz1F37ehX0ak5vAbZ9ncSXrPh0fDRw/fBxTY654FlmrsQ40UFom3owSG++tLvVGw==
+
+"@editorjs/marker@^1.2.2":
+  version "1.2.2"
+  resolved "https://registry.yarnpkg.com/@editorjs/marker/-/marker-1.2.2.tgz#d9261a257436bf70179c0fa1e766ab85c823c96b"
+  integrity sha512-BN/IHbVKKahGnMAiBOV5U7XUjfF6JkIkTZ6qNLxtTr7PUPM8UsJV8G8pyll9CX+XRUYYZyokA2kEBHTS4vUyyw==
+
+"@editorjs/quote@^2.4.0":
+  version "2.4.0"
+  resolved "https://registry.yarnpkg.com/@editorjs/quote/-/quote-2.4.0.tgz#effe570f9055831a230e0417fafa6091a6169a47"
+  integrity sha512-IWOBWjL2ngPP63GcIAltyD9kc7OVZFma4kS+T5JRHvKKDspYsnmrxsbRmCPc+coZQzqPxXHkiOZuNMdmGX/Y3w==
+
+"@editorjs/warning@^1.2.0":
+  version "1.2.0"
+  resolved "https://registry.yarnpkg.com/@editorjs/warning/-/warning-1.2.0.tgz#245a2286a2e996512ac345275b64fa638e319f5e"
+  integrity sha512-CMIsB+b8Ti8/duOzYfKn1upFEEMxj821RDyBbDx8iku4DRql524VnAErvd00sYnFpKKbXNOF4oQnBo/7bDIzPQ==
 
 "@eslint/eslintrc@^0.4.3":
   version "0.4.3"
@@ -1819,6 +1869,11 @@
   integrity sha512-K2waXdXBi2302XUdcHcR1jCeU0LL4TD9HRs/gk0N2Xvrht+G/BfJa4QObBQZfhMdxiCpV3COl5Nfq4uKTeTnJA==
   dependencies:
     "@babel/types" "^7.3.0"
+
+"@types/editorjs__header@^2.6.0":
+  version "2.6.0"
+  resolved "https://registry.yarnpkg.com/@types/editorjs__header/-/editorjs__header-2.6.0.tgz#994aa7f2891954187908190105132ad5faa18a5a"
+  integrity sha512-J9TyO/BjNVddi+syyXpvMRMtVz5Z62pwmFKynWsgP+wnJYdWF8ABqgomokIsAvuEwH5NHa/YxsTltYcPPGCRRQ==
 
 "@types/eslint@^7.2.6":
   version "7.28.0"

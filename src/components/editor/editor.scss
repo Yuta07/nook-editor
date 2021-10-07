@@ -1,18 +1,29 @@
 @import '/src/styles/mixin';
 
 .editor-main {
-	border: 1px solid var(--color-gray);
 	border-radius: 8px;
+	background: var(--color-secondary);
 
 	.codex-editor {
 		padding: 20px;
 	}
 
-	.ce-block__content {
-		max-width: 100%;
+	.ce-block {
+		max-width: 90%;
+		margin: 0 auto;
+
+		.ce-block__content {
+			max-width: 100%;
+		}
+	}
+
+	.ce-toolbar {
+		.ce-toolbar__content {
+			max-width: 90%;
+		}
 	}
 
 	.codex-editor {
-		max-width: 90%;
+		max-width: 100%;
 	}
 }

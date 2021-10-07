@@ -76,9 +76,11 @@
 }
 
 .article-new-isPublish-txt {
-	margin-left: 12px;
+	width: 68px;
+	display: inline-block;
 	font-size: var(--font-size-m);
 	font-weight: var(--font-weight-bold);
+	text-align: right;
 }
 
 .article-new-inner {
@@ -92,7 +94,7 @@
 }
 
 .article-new-word-txt {
-	margin-right: 20px;
+	width: 200px;
 	font-size: var(--font-size-m);
 
 	.article-new-word-emoji {
@@ -101,7 +103,7 @@
 }
 
 .article-new-word {
-	width: 600px;
+	width: calc(100% - 200px);
 }
 
 .article-new-content-inner {
