@@ -1,7 +1,7 @@
 import { ReactNode, VFC } from 'react'
 
 import { Header } from './Header'
-import { useFetchCategories } from '../../hooks/useCategories'
+import { useFetchCategories } from 'hooks/useCategories'
 
 import './layout.scss'
 

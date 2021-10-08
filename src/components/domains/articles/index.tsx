@@ -1,8 +1,14 @@
 import { Link } from 'react-router-dom'
 
+import { useFetchArticles } from 'hooks/useArticles'
+
 import './articles.scss'
 
 export const Articles = () => {
+	const [{ articles, isLoading }] = useFetchArticles()
+
+	console.log(articles, isLoading)
+
 	return (
 		<div className="articles-container">
 			<div className="articles-header">

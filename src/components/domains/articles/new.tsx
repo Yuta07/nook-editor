@@ -1,29 +1,43 @@
-import React, { useCallback, useState } from 'react'
-import Select from 'react-select'
+import React, { useCallback, useEffect, useState } from 'react'
+import { useHistory } from 'react-router-dom'
+import Select, { MultiValue, ActionMeta } from 'react-select'
 import { OutputData } from '@editorjs/editorjs'
 
 import { NookEditor } from 'components/editor'
 import { Button } from 'components/ui/Button'
 import { Input } from 'components/ui/Input'
 import { useAuthState } from 'contexts/auth'
+import { useCategoriesState } from '../../../contexts/categories'
 import { supabase } from 'supabase/supabaseClient'
 
 import './new.scss'
-
-const options = [
-	{ value: 'chocolate', label: 'Chocolate' },
-	{ value: 'strawberry', label: 'Strawberry' },
-	{ value: 'vanilla', label: 'Vanilla' },
-]
 
 export const ArticleNew = () => {
 	const [title, setTitle] = useState('')
 	const [word, setWord] = useState('')
 	const [content, setContent] = useState<OutputData | undefined>(undefined)
+	const [categories, setCategories] = useState<{ label: string; value: number }[]>([])
 	const [isPublish, setIsPublish] = useState(false)
 	const [isLoading, setIsLoading] = useState(false)
 
+	const [appCategories, setAppCategories] = useState<{ label: string; value: number }[]>([])
+
+	const history = useHistory()
+
 	const user = useAuthState()?.user
+	const state = useCategoriesState()
+
+	useEffect(() => {
+		if (state.categories === null) return
+
+		if (state.categories) {
+			const mapCategories = state.categories.map((category) => {
+				return { label: category.name, value: category.id }
+			})
+
+			setAppCategories(mapCategories)
+		}
+	}, [state.categories])
 
 	const handleInputChange = useCallback((e: React.ChangeEvent<HTMLInputElement>) => {
 		const { name, value } = e.currentTarget
@@ -38,6 +52,24 @@ export const ArticleNew = () => {
 		}
 	}, [])
 
+	const handleChangeCategories = useCallback(
+		(
+			newValue: MultiValue<{ label: string; value: number }>,
+			actionMeta: ActionMeta<{ label: string; value: number }>
+		) => {
+			if (actionMeta.option) {
+				const mapNewValue = newValue.map((value) => {
+					return value
+				})
+
+				setCategories(mapNewValue)
+			} else {
+				setCategories([])
+			}
+		},
+		[categories]
+	)
+
 	const handleIsPublishChange = useCallback(() => {
 		setIsPublish((prev) => !prev)
 	}, [])
@@ -46,15 +78,18 @@ export const ArticleNew = () => {
 		setIsLoading(true)
 
 		try {
-			const { data, error } = await supabase
-				.from('articles')
-				.insert([{ title, word, content, ispublished: isPublish, user_id: user?.id, categories: [8] }])
+			const selectedCategories = categories.map((category) => {
+				return category.value
+			})
 
-			console.log(data, error)
+			const { error } = await supabase
+				.from('articles')
+				.insert([{ title, word, content, ispublished: isPublish, user_id: user?.id, categories: selectedCategories }])
+
 			if (error) {
-				alert(error)
+				alert(error.message)
 			} else {
-				console.log(data)
+				history.push('/')
 			}
 		} catch (e) {
 			alert(e)
@@ -116,7 +151,14 @@ export const ArticleNew = () => {
 					<span className="article-new-category-txt">
 						<span className="article-new-category-emoji">📚</span>Do you select categories?
 					</span>
-					<Select isMulti name="article-new-categories" options={options} className="article-new-categories-select" />
+					<Select
+						isMulti
+						name="article-new-categories"
+						options={appCategories}
+						className="article-new-categories-select"
+						classNamePrefix="article-new-select"
+						onChange={handleChangeCategories}
+					/>
 				</div>
 				<div className="article-new-content-inner">
 					<NookEditor content={content} handleChangeContent={setContent} />
