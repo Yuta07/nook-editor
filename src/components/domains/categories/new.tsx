@@ -1,10 +1,10 @@
 import React, { useCallback, useEffect, useState } from 'react'
 
-import { useAuthState } from '../../../contexts/auth'
-import { CategoryState, useCategoriesDispatch } from '../../../contexts/categories'
-import { supabase } from '../../../supabase/supabaseClient'
-import { Button } from '../../ui/Button'
-import { Input } from '../../ui/Input'
+import { useAuthState } from 'contexts/auth'
+import { CategoryState, useCategoriesDispatch } from 'contexts/categories'
+import { supabase } from 'supabase/supabaseClient'
+import { Button } from 'components/ui/Button'
+import { Input } from 'components/ui/Input'
 
 import './new.scss'
 

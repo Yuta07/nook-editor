@@ -1,5 +1,5 @@
-import { useEffect } from 'react'
-import EditorJS from '@editorjs/editorjs'
+import { memo, useCallback, useEffect } from 'react'
+import EditorJS, { OutputData } from '@editorjs/editorjs'
 
 import Checklist from '@editorjs/checklist'
 import CodeTool from '@editorjs/code'
@@ -12,11 +12,20 @@ import List from '@editorjs/list'
 import Quote from '@editorjs/quote'
 import Warning from '@editorjs/warning'
 
+import { supabase } from '../../supabase/supabaseClient'
+
 import './editor.scss'
 
-export const NookEditor = () => {
+type Props = {
+	content: OutputData | undefined
+	handleChangeContent: (data: OutputData) => void
+}
+
+let nookEditor: EditorJS
+
+export const NookEditor = memo(({ content, handleChangeContent }: Props) => {
 	useEffect(() => {
-		new EditorJS({
+		nookEditor = new EditorJS({
 			holder: 'editorjs',
 			placeholder: 'Let`s write an awesome article!',
 			tools: {
@@ -67,19 +76,58 @@ export const NookEditor = () => {
 				image: {
 					class: ImageTool, // eslint-disable-line @typescript-eslint/no-unsafe-assignment
 					config: {
-						endpoints: {},
+						uploader: {
+							async uploadByFile(file: File) {
+								return upload(file).then((data) => {
+									return {
+										success: 1,
+										file: {
+											url: data,
+										},
+									}
+								})
+							},
+						},
 					},
 				},
 			},
-			onReady: () => {
-				console.log('Editor.js is ready to work!')
-			},
 			onChange: () => {
-				console.log("Now I know that Editor's content changed!")
+				void save()
 			},
-			data: undefined,
+			data: content,
 		})
 	}, [])
 
+	const save = async () => {
+		const savedData: OutputData = await nookEditor.saver.save() // eslint-disable-line @typescript-eslint/no-unsafe-assignment
+
+		handleChangeContent(savedData)
+	}
+
+	const upload = useCallback(async (file: File) => {
+		if (!file) {
+			throw new Error('You must select an image to upload.')
+		}
+
+		const fileExt = file.name.split('.').pop() || ''
+		const fileName = `${Date.now()}.${fileExt}`
+		const filePath = `${fileName}`
+
+		const { error: uploadError } = await supabase.storage.from('articles').upload(filePath, file)
+
+		if (uploadError) {
+			throw uploadError.message
+		}
+
+		const { data, error } = await supabase.storage.from('articles').download(filePath)
+		const url = URL.createObjectURL(data)
+
+		if (error) {
+			throw error.message
+		}
+
+		return url
+	}, [])
+
 	return <div className="editor-main" id="editorjs" />
-}
+})
