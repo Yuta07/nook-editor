@@ -1,5 +1,9 @@
 @import '/src/styles/mixin';
 
+.category-cart-outer-container {
+	position: relative;
+}
+
 .category-card-container {
 	width: 100%;
 	display: flex;
@@ -12,7 +16,6 @@
 	filter: drop-shadow(2px 4px 6px rgba(0, 0, 0, 0.2));
 	text-decoration: none;
 	cursor: pointer;
-	position: relative;
 
 	&:hover {
 		transition: 0.3s;

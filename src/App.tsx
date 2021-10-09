@@ -23,7 +23,7 @@ export const App = () => {
 					<Route path="/articles/new">
 						<ArticleNew />
 					</Route>
-					<Route path="/articles/:article_id">
+					<Route path="/articles/:article_slug">
 						<div>/article show path</div>
 					</Route>
 					<Route path="/" component={() => <User />} />

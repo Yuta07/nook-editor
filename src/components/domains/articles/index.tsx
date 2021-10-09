@@ -1,13 +1,13 @@
 import { Link } from 'react-router-dom'
 
+import { List } from './List'
+import { Spinner } from 'components/ui/Spinner'
 import { useFetchArticles } from 'hooks/useArticles'
 
 import './articles.scss'
 
 export const Articles = () => {
 	const [{ articles, isLoading }] = useFetchArticles()
-
-	console.log(articles, isLoading)
 
 	return (
 		<div className="articles-container">
@@ -17,7 +17,14 @@ export const Articles = () => {
 					Add new
 				</Link>
 			</div>
-			<div className="articles-content">here is content</div>
+			<div className="articles-content">
+				{isLoading ? <Spinner /> : null}
+				{articles === null
+					? null
+					: articles.map((article) => {
+							return <List key={article.slug} article={article} />
+					  })}
+			</div>
 		</div>
 	)
 }

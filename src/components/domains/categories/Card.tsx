@@ -55,13 +55,15 @@ export const Card = ({ category }: Props) => {
 	}, [])
 
 	return (
-		<Link to={`/categories/${category.name}`} className="category-card-container">
-			<img
-				src={imageUrl || '/category_default.png'}
-				alt={`category_${category.name}`}
-				className="category-card-image"
-			/>
-			<h3 className="category-card-name">{category.name}</h3>
+		<div className="category-cart-outer-container">
+			<Link to={`/categories/${category.name}`} className="category-card-container">
+				<img
+					src={imageUrl || '/category_default.png'}
+					alt={`category_${category.name}`}
+					className="category-card-image"
+				/>
+				<h3 className="category-card-name">{category.name}</h3>
+			</Link>
 			<button
 				name="category-delete-button"
 				type="button"
@@ -70,6 +72,6 @@ export const Card = ({ category }: Props) => {
 			>
 				<FaRegTrashAlt size={18} color="var(--color-gray-darken)" />
 			</button>
-		</Link>
+		</div>
 	)
 }

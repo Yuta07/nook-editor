@@ -11,6 +11,7 @@ import { Input } from '../../ui/Input'
 import './edit.scss'
 
 export const Edit = () => {
+	const [id, setId] = useState(0)
 	const [name, setName] = useState('')
 	const [description, setDescription] = useState('')
 	const [imageName, setImageName] = useState<string | null>(null)
@@ -37,6 +38,7 @@ export const Edit = () => {
 				})
 
 				if (category) {
+					setId(category.id)
 					setName(category.name)
 					setDescription(category.description || '')
 					setImageName(category.image_url)
@@ -110,7 +112,7 @@ export const Edit = () => {
 			const { data, error } = await supabase
 				.from('categories')
 				.update({ name, description, image_url: imageName })
-				.match({ user_id: user?.id })
+				.match({ user_id: user?.id, id: id })
 
 			if (error) {
 				alert(error)
@@ -181,7 +183,7 @@ export const Edit = () => {
 					</div>
 					<div className="category-edit-button-container">
 						<Button
-							name="category-new-button"
+							name="category-edit-button"
 							type="submit"
 							className="category-edit-button"
 							disabled={name === '' || isLoading || isUploading}

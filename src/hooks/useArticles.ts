@@ -1,22 +1,9 @@
 import { useCallback, useEffect, useState } from 'react'
 import { PostgrestResponse } from '@supabase/supabase-js'
-import { OutputData } from '@editorjs/editorjs'
 
 import { useAuthState } from 'contexts/auth'
 import { supabase } from 'supabase/supabaseClient'
-
-export type ArticleType = {
-	id: number
-	slug: string
-	title: string
-	word: string
-	ispublished: boolean
-	created_at: Date
-	updated_at: Date
-	user_id: string
-	content: OutputData | null
-	categories: number[]
-}
+import { ArticleType } from 'types'
 
 export const useFetchArticles = () => {
 	const [articles, setArticles] = useState<ArticleType[] | null>(null)

@@ -29,7 +29,9 @@
 }
 
 .articles-content {
+	min-height: 80px;
 	margin-top: 12px;
 	padding-top: 20px;
 	border-top: 1px solid var(--color-gray);
+	position: relative;
 }
