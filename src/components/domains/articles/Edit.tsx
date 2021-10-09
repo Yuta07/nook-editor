@@ -1,4 +1,5 @@
 import React, { useCallback, useEffect, useState } from 'react'
+import { useHistory } from 'react-router-dom'
 import Select, { MultiValue, ActionMeta } from 'react-select'
 import { OutputData } from '@editorjs/editorjs'
 
@@ -20,7 +21,7 @@ export const ArticleEdit = () => {
 	const [content, setContent] = useState<OutputData | undefined>(undefined)
 	const [categories, setCategories] = useState<{ label: string; value: number }[]>([])
 	const [isPublish, setIsPublish] = useState(false)
-	const [isSubmitLoading, setIsSubmitLoading] = useState(false)
+	const [isActionLoading, setIsActionLoading] = useState(false)
 	const [isSetting, setIsSetting] = useState(false)
 
 	const [appCategories, setAppCategories] = useState<{ label: string; value: number }[]>([])
@@ -29,6 +30,8 @@ export const ArticleEdit = () => {
 
 	const user = useAuthState()?.user
 	const state = useCategoriesState()
+
+	const history = useHistory()
 
 	useEffect(() => {
 		if (article && state.categories) {
@@ -110,7 +113,7 @@ export const ArticleEdit = () => {
 	}, [])
 
 	const handleUpdateArticle = async () => {
-		setIsSubmitLoading(true)
+		setIsActionLoading(true)
 
 		try {
 			const selectedCategories = categories.map((category) => {
@@ -128,7 +131,25 @@ export const ArticleEdit = () => {
 		} catch (e) {
 			alert(e)
 		} finally {
-			setIsSubmitLoading(false)
+			setIsActionLoading(false)
+		}
+	}
+
+	const handleDeleteArticle = async () => {
+		setIsActionLoading(true)
+
+		try {
+			const { error } = await supabase.from('articles').delete().match({ id: id })
+
+			if (error) {
+				alert(error.message)
+			} else {
+				history.push('/')
+			}
+		} catch (e) {
+			alert(e)
+		} finally {
+			setIsActionLoading(false)
 		}
 	}
 
@@ -163,10 +184,19 @@ export const ArticleEdit = () => {
 								name="article-edit-button"
 								type="button"
 								className="article-edit-publish-button"
-								disabled={disabled || isSubmitLoading}
+								disabled={disabled || isActionLoading}
 								onClick={handleUpdateArticle}
 							>
 								{isPublish ? 'Publish' : 'Save'}
+							</Button>
+							<Button
+								name="article-delete-button"
+								type="button"
+								className="article-delete-button"
+								disabled={isActionLoading}
+								onClick={handleDeleteArticle}
+							>
+								Delete
 							</Button>
 						</div>
 					</div>

@@ -12,7 +12,7 @@
 }
 
 .article-edit-title {
-	width: 80%;
+	width: 65%;
 	max-width: 640px;
 	padding: 8px 4px;
 	background: transparent;
@@ -80,7 +80,16 @@
 .article-edit-publish-button {
 	width: 88px;
 	margin-left: 20px;
-	display: inline-block;
+}
+
+.article-delete-button {
+	width: 88px;
+	margin-left: 20px;
+	background: var(--color-error);
+
+	&:hover {
+		background: #ad3426;
+	}
 }
 
 .article-edit-inner {
