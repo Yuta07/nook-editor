@@ -2,10 +2,11 @@ import { Switch, Route } from 'react-router-dom'
 
 import { Home } from './Home'
 import { User } from './User'
-import { Layout } from './components/common/Layout'
-import { ArticleNew } from './components/domains/articles/New'
-import { Spinner } from './components/ui/Spinner'
-import { useAuthState } from './contexts/auth'
+import { Layout } from 'components/common/Layout'
+import { ArticleEdit } from 'components/domains/articles/Edit'
+import { ArticleNew } from 'components/domains/articles/New'
+import { Spinner } from 'components/ui/Spinner'
+import { useAuthState } from 'contexts/auth'
 
 export const App = () => {
 	const state = useAuthState()
@@ -24,7 +25,7 @@ export const App = () => {
 						<ArticleNew />
 					</Route>
 					<Route path="/articles/:article_slug">
-						<div>/article show path</div>
+						<ArticleEdit />
 					</Route>
 					<Route path="/" component={() => <User />} />
 				</Switch>

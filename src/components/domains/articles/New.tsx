@@ -157,6 +157,8 @@ export const ArticleNew = () => {
 						options={appCategories}
 						className="article-new-categories-select"
 						classNamePrefix="article-new-select"
+						menuPortalTarget={document.body}
+						styles={{ menuPortal: (base) => ({ ...base, zIndex: 9999 }) }}
 						onChange={handleChangeCategories}
 					/>
 				</div>
