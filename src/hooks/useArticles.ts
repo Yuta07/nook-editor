@@ -16,37 +16,41 @@ export const useFetchArticles = () => {
 
 	let didCancel = false
 
-	const fetchArticles = useCallback(async () => {
-		setIsLoading(true)
+	const fetchArticles = useCallback(
+		async (searchTxt: string) => {
+			setIsLoading(true)
 
-		try {
-			const { data }: PostgrestResponse<ArticleType> = await supabase
-				.from('articles')
-				.select()
-				.eq('user_id', user?.id)
-				.order('created_at', { ascending: false })
+			try {
+				const { data }: PostgrestResponse<ArticleType> = await supabase
+					.from('articles')
+					.select()
+					.eq('user_id', user?.id)
+					.like('title', `%${searchTxt}%`)
+					.order('created_at', { ascending: false })
 
-			if (data && !didCancel) {
-				setArticles(data)
+				if (data && !didCancel) {
+					setArticles(data)
+				}
+			} catch (e) {
+				alert(e)
+			} finally {
+				setIsLoading(false)
 			}
-		} catch (e) {
-			alert(e)
-		} finally {
-			setIsLoading(false)
-		}
-	}, [state?.loggedIn])
+		},
+		[state?.loggedIn]
+	)
 
 	useEffect(() => {
 		if (!state?.loggedIn) return
 
-		void fetchArticles()
+		void fetchArticles('')
 
 		return () => {
 			didCancel = true
 		}
 	}, [fetchArticles])
 
-	return [{ articles, isLoading }]
+	return [{ articles, isLoading, fetchArticles }]
 }
 
 export const useFetchArticle = () => {

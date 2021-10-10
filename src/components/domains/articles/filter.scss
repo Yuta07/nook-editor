@@ -1,0 +1,35 @@
+@import '/src/styles/mixin';
+
+.articles-filter-container {
+	margin: 20px 0 40px;
+}
+
+.articles-filter-search-form {
+	width: 400px;
+	position: relative;
+}
+
+.articles-filter-input {
+	width: 100%;
+}
+
+.articles-filter-button {
+	height: calc(100% - 4px);
+	padding: 0 10px;
+	border: none;
+	border-radius: 8px;
+	background: var(--color-secondary);
+	position: absolute;
+	top: 2px;
+	right: 2px;
+	z-index: 100;
+	cursor: pointer;
+
+	&:hover {
+		transition: 0.3s;
+
+		svg {
+			fill: var(--color-main);
+		}
+	}
+}
