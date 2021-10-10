@@ -1,7 +1,12 @@
 @import '/src/styles/mixin';
 
 .articles-filter-container {
-	margin: 20px 0 40px;
+	margin: 8px 0 24px;
+}
+
+.articles-filter-inner {
+	display: flex;
+	justify-content: space-between;
 }
 
 .articles-filter-search-form {
@@ -32,4 +37,41 @@
 			fill: var(--color-main);
 		}
 	}
+}
+
+.article-filter-search-category {
+	width: 168px;
+}
+
+.article-filter-select__control {
+	min-height: auto !important;
+	border-color: var(--color-gray) !important;
+	border-radius: 8px !important;
+}
+
+.article-filter-select__control--is-focused {
+	box-shadow: 0 0 0 1px var(--color-main) !important;
+}
+
+.article-filter-select__value-container {
+	padding: 4px 10px !important;
+}
+
+.article-filter-select__placeholder {
+	margin: 0 !important;
+	font-size: var(--font-size-s);
+}
+
+.article-filter-select__input-container {
+	margin: 0 !important;
+	padding: 0 !important;
+}
+
+.article-filter-select__indicator {
+	padding: 6px !important;
+}
+
+.articles-filter-search-result {
+	margin-top: 20px;
+	font-size: var(--font-size-s);
 }

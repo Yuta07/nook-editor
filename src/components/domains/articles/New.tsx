@@ -7,7 +7,7 @@ import { NookEditor } from 'components/editor'
 import { Button } from 'components/ui/Button'
 import { Input } from 'components/ui/Input'
 import { useAuthState } from 'contexts/auth'
-import { useCategoriesState } from '../../../contexts/categories'
+import { useCategoriesState } from 'contexts/categories'
 import { supabase } from 'supabase/supabaseClient'
 
 import './new.scss'

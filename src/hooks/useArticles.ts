@@ -1,5 +1,5 @@
 import { useCallback, useEffect, useState } from 'react'
-import { useParams } from 'react-router-dom'
+import { useLocation, useParams } from 'react-router-dom'
 import { PostgrestResponse, PostgrestSingleResponse } from '@supabase/supabase-js'
 
 import { useAuthState } from 'contexts/auth'
@@ -16,8 +16,10 @@ export const useFetchArticles = () => {
 
 	let didCancel = false
 
+	const search = useLocation().search
+
 	const fetchArticles = useCallback(
-		async (searchTxt: string) => {
+		async (searchTxt: string, categoryId: number | null) => {
 			setIsLoading(true)
 
 			try {
@@ -26,6 +28,7 @@ export const useFetchArticles = () => {
 					.select()
 					.eq('user_id', user?.id)
 					.like('title', `%${searchTxt}%`)
+					.contains('categories', [categoryId])
 					.order('created_at', { ascending: false })
 
 				if (data && !didCancel) {
@@ -43,7 +46,10 @@ export const useFetchArticles = () => {
 	useEffect(() => {
 		if (!state?.loggedIn) return
 
-		void fetchArticles('')
+		const query = new URLSearchParams(search)
+		const title = query.get('q') || ''
+
+		void fetchArticles(title, null)
 
 		return () => {
 			didCancel = true
