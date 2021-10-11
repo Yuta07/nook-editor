@@ -21,17 +21,12 @@ export const Filter = ({ fetchArticles }: Props) => {
 	const history = useHistory()
 
 	const search = useLocation().search
+	const query = new URLSearchParams(search)
+	const searchResult = query.get('q') || ''
 
 	const params = new URLSearchParams()
 
 	const state = useCategoriesState()
-
-	useEffect(() => {
-		const query = new URLSearchParams(search)
-		const searchResult = query.get('q') || ''
-
-		setSearchTxt(searchResult)
-	}, [])
 
 	useEffect(() => {
 		if (state.categories === null) return
@@ -53,14 +48,6 @@ export const Filter = ({ fetchArticles }: Props) => {
 
 			const categoyId = newValue?.value as number
 
-			if (searchTxt) {
-				params.append('q', searchTxt)
-
-				history.push({ search: params.toString() })
-			} else {
-				params.delete('q')
-			}
-
 			fetchArticles(searchTxt, categoyId)
 		},
 		[searchTxt, category]
@@ -73,10 +60,10 @@ export const Filter = ({ fetchArticles }: Props) => {
 
 		if (searchTxt) {
 			params.append('q', searchTxt)
-
 			history.push({ search: params.toString() })
 		} else {
 			params.delete('q')
+			history.push({ search: '' })
 		}
 
 		fetchArticles(searchTxt, categoryId)
@@ -108,7 +95,7 @@ export const Filter = ({ fetchArticles }: Props) => {
 					onChange={handleChangeCategories}
 				/>
 			</div>
-			{searchTxt ? <p className="articles-filter-search-result">Search result for `{searchTxt}`</p> : null}
+			{searchResult ? <p className="articles-filter-search-result">Search result for `{searchResult}`</p> : null}
 		</div>
 	)
 }
