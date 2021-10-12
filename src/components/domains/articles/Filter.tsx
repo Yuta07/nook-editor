@@ -29,6 +29,12 @@ export const Filter = ({ fetchArticles }: Props) => {
 	const state = useCategoriesState()
 
 	useEffect(() => {
+		if (searchResult) {
+			setSearchTxt(searchResult)
+		}
+	}, [])
+
+	useEffect(() => {
 		if (state.categories === null) return
 
 		const mapCategories = state.categories.map((category) => {

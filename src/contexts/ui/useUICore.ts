@@ -4,6 +4,7 @@ export type ToastType = {
 	id: number
 	type: 'SUCCESS' | 'ERROR'
 	message: string
+	time: number
 }
 
 export type UIState = {
@@ -38,7 +39,7 @@ const initialStateFactory: UIState = {
 function reducer(state: UIState, action: ActionType): UIState {
 	switch (action.type) {
 		case 'SHOW_TOAST':
-			return { ...state, toasts: [...state.toasts, action.payload] }
+			return { ...state, toasts: [action.payload, ...state.toasts] }
 		case 'REMOVE_TOAST':
 			return {
 				...state,
@@ -53,7 +54,7 @@ export const useUICore = () => {
 	const [state, dispatch] = useReducer(reducer, initialStateFactory)
 
 	const showToast = useCallback(
-		(toast: Omit<ToastType, 'id'>) => {
+		(toast: Omit<ToastType, 'id' | 'time'>) => {
 			const newId = createToast()
 
 			dispatch({
@@ -62,6 +63,7 @@ export const useUICore = () => {
 					id: newId,
 					type: toast.type,
 					message: toast.message,
+					time: toast.type === 'SUCCESS' ? 10000000 : 60000,
 				},
 			})
 		},

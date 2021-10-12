@@ -1,9 +1,10 @@
 import React, { useCallback, useEffect, useState } from 'react'
 
-import { useAuthDispatch, useAuthState } from '../../../contexts/auth'
-import { supabase } from '../../../supabase/supabaseClient'
-import { Button } from '../../ui/Button'
-import { InputWithLabel } from '../../ui/Input'
+import { useAuthDispatch, useAuthState } from 'contexts/auth'
+import { useUIDispatch } from 'contexts/ui'
+import { Button } from 'components/ui/Button'
+import { InputWithLabel } from 'components/ui/Input'
+import { supabase } from 'supabase/supabaseClient'
 
 import './account.scss'
 
@@ -13,7 +14,8 @@ export const Account = () => {
 	const [newEmail, setNewEmail] = useState('')
 	const [isLoading, setIsLoading] = useState(false)
 
-	const dispatch = useAuthDispatch()
+	const authDispatch = useAuthDispatch()
+	const uiDispatch = useUIDispatch()
 
 	useEffect(() => {
 		if (state && state.user && state.user.email) {
@@ -37,7 +39,7 @@ export const Account = () => {
 				alert(error)
 			} else {
 				if (data) {
-					dispatch?.updateAuth(data)
+					authDispatch?.updateAuth(data)
 				}
 			}
 		} catch (e) {
@@ -51,9 +53,13 @@ export const Account = () => {
 		await supabase.auth
 			.signOut()
 			.then(() => {
-				dispatch?.removeAuth()
+				uiDispatch?.showToast({ type: 'SUCCESS', message: 'Logged out.' })
+
+				authDispatch?.removeAuth()
 			})
 			.catch((e) => {
+				uiDispatch?.showToast({ type: 'ERROR', message: 'Logout failure.' })
+
 				alert(e)
 			})
 	}, [])
@@ -67,7 +73,8 @@ export const Account = () => {
 					alert(error.message)
 				} else {
 					await supabase.auth.signOut()
-					dispatch?.removeAuth()
+
+					authDispatch?.removeAuth()
 				}
 			}
 		}

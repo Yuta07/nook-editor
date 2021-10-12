@@ -1,10 +1,11 @@
 import React, { useCallback, useEffect, useState } from 'react'
 
-import { useAuthDispatch } from '../../contexts/auth'
-import { supabase } from '../../supabase/supabaseClient'
-import { Button } from '../ui/Button'
-import { InputWithLabel } from '../ui/Input'
-import { Loading } from '../ui/Loading'
+import { Button } from 'components/ui/Button'
+import { InputWithLabel } from 'components/ui/Input'
+import { Loading } from 'components/ui/Loading'
+import { useAuthDispatch } from 'contexts/auth'
+import { useUIDispatch } from 'contexts/ui'
+import { supabase } from 'supabase/supabaseClient'
 
 import './signinSection.scss'
 
@@ -15,7 +16,8 @@ export const SigninSection = () => {
 	const [isSubmit, setIsSubmit] = useState(false)
 	const [error, setError] = useState('')
 
-	const dispatch = useAuthDispatch()
+	const authDispatch = useAuthDispatch()
+	const uiDispatch = useUIDispatch()
 
 	useEffect(() => {
 		let didCancel = false
@@ -32,9 +34,13 @@ export const SigninSection = () => {
 				}
 
 				if (user && !didCancel) {
-					dispatch?.successAuth(user)
+					uiDispatch?.showToast({ type: 'SUCCESS', message: 'Successful login.' })
+
+					authDispatch?.successAuth(user)
 				}
 			} catch (e) {
+				uiDispatch?.showToast({ type: 'ERROR', message: 'Login failed.' })
+
 				alert(e)
 			} finally {
 				setIsSubmit(false)

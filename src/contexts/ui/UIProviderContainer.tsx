@@ -7,7 +7,7 @@ type Props = {
 }
 
 export type DispatchAction = {
-	showToast: (toast: ToastType) => void
+	showToast: (toast: Omit<ToastType, 'id' | 'time'>) => void
 	removeToast: (toastId: ToastType['id']) => void
 }
 

@@ -1,11 +1,12 @@
 import React, { useCallback, useEffect, useState } from 'react'
 import { FaRegCheckCircle } from 'react-icons/fa'
 
-import { useAuthDispatch } from '../../contexts/auth'
-import { supabase } from '../../supabase/supabaseClient'
-import { Button } from '../ui/Button'
-import { InputWithLabel } from '../ui/Input'
-import { Loading } from '../ui/Loading'
+import { useAuthDispatch } from 'contexts/auth'
+import { useUIDispatch } from 'contexts/ui'
+import { Button } from 'components/ui/Button'
+import { InputWithLabel } from 'components/ui/Input'
+import { Loading } from 'components/ui/Loading'
+import { supabase } from 'supabase/supabaseClient'
 
 import './signupSection.scss'
 
@@ -20,7 +21,8 @@ export const SignupSection = () => {
 	const [isLeastUpper, setIsLeastUpper] = useState(false)
 	const [isLeastOneNum, setIsLeastOneNum] = useState(false)
 
-	const dispatch = useAuthDispatch()
+	const authDispatch = useAuthDispatch()
+	const uiDispatch = useUIDispatch()
 
 	useEffect(() => {
 		if (/^[a-zA-Z\d]{8,100}$/.test(password)) {
@@ -57,9 +59,13 @@ export const SignupSection = () => {
 				}
 
 				if (user && !didCancel) {
-					dispatch?.successAuth(user)
+					uiDispatch?.showToast({ type: 'SUCCESS', message: 'Successful sign-up.' })
+
+					authDispatch?.successAuth(user)
 				}
 			} catch (e) {
+				uiDispatch?.showToast({ type: 'ERROR', message: 'Sign-up failure.' })
+
 				alert(e)
 			} finally {
 				setIsSubmit(false)
