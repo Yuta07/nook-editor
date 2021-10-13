@@ -2,8 +2,9 @@ import { useCallback, useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
 import { FaRegTrashAlt } from 'react-icons/fa'
 
-import { CategoryState, useCategoriesDispatch } from '../../../contexts/categories'
-import { supabase } from '../../../supabase/supabaseClient'
+import { CategoryState, useCategoriesDispatch } from 'contexts/categories'
+import { useUIDispatch } from 'contexts/ui'
+import { supabase } from 'supabase/supabaseClient'
 
 import './card.scss'
 
@@ -14,7 +15,8 @@ type Props = {
 export const Card = ({ category }: Props) => {
 	const [imageUrl, setImageUrl] = useState<string>('')
 
-	const dispatch = useCategoriesDispatch()
+	const categoriesDispatch = useCategoriesDispatch()
+	const uiDispatch = useUIDispatch()
 
 	useEffect(() => {
 		async function downloadImage() {
@@ -47,9 +49,13 @@ export const Card = ({ category }: Props) => {
 			const { error } = await supabase.from('categories').delete().match({ id: category.id })
 
 			if (error) {
+				uiDispatch?.showToast({ type: 'ERROR', message: 'Category deletion failed.' })
+
 				throw error
 			} else {
-				dispatch?.deleteCategory(category.id)
+				uiDispatch?.showToast({ type: 'SUCCESS', message: 'Successful category deletion.' })
+
+				categoriesDispatch?.deleteCategory(category.id)
 			}
 		}
 	}, [])

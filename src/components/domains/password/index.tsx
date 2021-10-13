@@ -1,9 +1,10 @@
 import React, { useCallback, useState } from 'react'
 
-import { useAuthDispatch } from '../../../contexts/auth'
-import { supabase } from '../../../supabase/supabaseClient'
-import { Button } from '../../ui/Button'
-import { InputWithLabel } from '../../ui/Input'
+import { useAuthDispatch } from 'contexts/auth'
+import { useUIDispatch } from 'contexts/ui'
+import { Button } from 'components/ui/Button'
+import { InputWithLabel } from 'components/ui/Input'
+import { supabase } from 'supabase/supabaseClient'
 
 import './password.scss'
 
@@ -12,7 +13,8 @@ export const Password = () => {
 	const [error, setError] = useState(false)
 	const [isLoading, setIsLoading] = useState(false)
 
-	const dispatch = useAuthDispatch()
+	const authDispatch = useAuthDispatch()
+	const uiDispatch = useUIDispatch()
 
 	const handleChangePassword = useCallback((e: React.FormEvent<HTMLInputElement>) => {
 		setNewPassword(e.currentTarget.value)
@@ -37,12 +39,16 @@ export const Password = () => {
 				alert(error)
 			} else {
 				if (data) {
-					dispatch?.updateAuth(data)
+					uiDispatch?.showToast({ type: 'SUCCESS', message: 'Successful password change.' })
+
+					authDispatch?.updateAuth(data)
 				}
 
 				setNewPassword('')
 			}
 		} catch (e) {
+			uiDispatch?.showToast({ type: 'ERROR', message: 'Password change failed.' })
+
 			alert(e)
 		} finally {
 			setIsLoading(false)

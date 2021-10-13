@@ -63,7 +63,7 @@ export const useUICore = () => {
 					id: newId,
 					type: toast.type,
 					message: toast.message,
-					time: toast.type === 'SUCCESS' ? 10000000 : 60000,
+					time: toast.type === 'SUCCESS' ? 20000 : 60000,
 				},
 			})
 		},

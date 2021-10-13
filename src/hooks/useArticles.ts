@@ -3,6 +3,7 @@ import { useLocation, useParams } from 'react-router-dom'
 import { PostgrestResponse, PostgrestSingleResponse } from '@supabase/supabase-js'
 
 import { useAuthState } from 'contexts/auth'
+import { useUIDispatch } from 'contexts/ui'
 import { supabase } from 'supabase/supabaseClient'
 import { ArticleType } from 'types'
 
@@ -11,6 +12,7 @@ export const useFetchArticles = () => {
 	const [isLoading, setIsLoading] = useState(false)
 
 	const state = useAuthState()
+	const uiDispatch = useUIDispatch()
 
 	const user = state?.user
 
@@ -35,6 +37,8 @@ export const useFetchArticles = () => {
 					setArticles(data)
 				}
 			} catch (e) {
+				uiDispatch?.showToast({ type: 'ERROR', message: 'Failed to fetch the articles.' })
+
 				alert(e)
 			} finally {
 				setIsLoading(false)
@@ -64,6 +68,7 @@ export const useFetchArticle = () => {
 	const [isLoading, setIsLoading] = useState(false)
 
 	const state = useAuthState()
+	const uiDispatch = useUIDispatch()
 
 	const user = state?.user
 
@@ -92,6 +97,8 @@ export const useFetchArticle = () => {
 				setArticle(data)
 			}
 		} catch (e) {
+			uiDispatch?.showToast({ type: 'ERROR', message: 'Failed to fetch the specified article.' })
+
 			alert(e)
 		} finally {
 			setIsLoading(false)

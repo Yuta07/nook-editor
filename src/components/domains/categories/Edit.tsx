@@ -2,11 +2,12 @@ import { useCallback, useEffect, useState } from 'react'
 import { useHistory, useParams } from 'react-router-dom'
 import { FaCamera } from 'react-icons/fa'
 
-import { useAuthState } from '../../../contexts/auth'
-import { CategoryState, useCategoriesDispatch, useCategoriesState } from '../../../contexts/categories'
-import { supabase } from '../../../supabase/supabaseClient'
-import { Button } from '../../ui/Button'
-import { Input } from '../../ui/Input'
+import { Button } from 'components/ui/Button'
+import { Input } from 'components/ui/Input'
+import { useAuthState } from 'contexts/auth'
+import { CategoryState, useCategoriesDispatch, useCategoriesState } from 'contexts/categories'
+import { useUIDispatch } from 'contexts/ui'
+import { supabase } from 'supabase/supabaseClient'
 
 import './edit.scss'
 
@@ -20,7 +21,8 @@ export const Edit = () => {
 	const [isUploading, setIsUploading] = useState(false)
 
 	const user = useAuthState()?.user
-	const dispatch = useCategoriesDispatch()
+	const categoriesDispatch = useCategoriesDispatch()
+	const uiDispatch = useUIDispatch()
 	const state = useCategoriesState()
 
 	const param = useParams()
@@ -121,9 +123,12 @@ export const Edit = () => {
 
 				history.push({ pathname: `/categories/${category[0].name}` })
 
-				dispatch?.updateCategory(category[0])
+				uiDispatch?.showToast({ type: 'SUCCESS', message: 'Successful category update.' })
+				categoriesDispatch?.updateCategory(category[0])
 			}
 		} catch (e) {
+			uiDispatch?.showToast({ type: 'ERROR', message: 'Category update failed.' })
+
 			alert(e)
 		} finally {
 			setIsLoading(false)
@@ -149,6 +154,10 @@ export const Edit = () => {
 						rows={2}
 						placeholder="category description"
 						className="category-edit-description"
+						autoComplete="off"
+						autoCorrect="off"
+						autoCapitalize="off"
+						spellCheck="false"
 						onChange={handleTextareaChange}
 					/>
 					<div className="category-edit-image-container">

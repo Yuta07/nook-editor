@@ -9,6 +9,7 @@ import { Input } from 'components/ui/Input'
 import { Spinner } from 'components/ui/Spinner'
 import { useAuthState } from 'contexts/auth'
 import { useCategoriesState } from 'contexts/categories'
+import { useUIDispatch } from 'contexts/ui'
 import { useFetchArticle } from 'hooks/useArticles'
 import { supabase } from 'supabase/supabaseClient'
 
@@ -30,6 +31,7 @@ export const ArticleEdit = () => {
 
 	const user = useAuthState()?.user
 	const state = useCategoriesState()
+	const uiDispatch = useUIDispatch()
 
 	const history = useHistory()
 
@@ -126,9 +128,15 @@ export const ArticleEdit = () => {
 				.eq('id', id)
 
 			if (error) {
+				uiDispatch?.showToast({ type: 'ERROR', message: 'Article update failed.' })
+
 				alert(error.message)
+			} else {
+				uiDispatch?.showToast({ type: 'SUCCESS', message: 'Successful article update.' })
 			}
 		} catch (e) {
+			uiDispatch?.showToast({ type: 'ERROR', message: 'Article update failed.' })
+
 			alert(e)
 		} finally {
 			setIsActionLoading(false)
@@ -142,11 +150,17 @@ export const ArticleEdit = () => {
 			const { error } = await supabase.from('articles').delete().match({ id: id })
 
 			if (error) {
+				uiDispatch?.showToast({ type: 'ERROR', message: 'Article deletion failed.' })
+
 				alert(error.message)
 			} else {
+				uiDispatch?.showToast({ type: 'SUCCESS', message: 'Successful article deletion.' })
+
 				history.push('/')
 			}
 		} catch (e) {
+			uiDispatch?.showToast({ type: 'ERROR', message: 'Article deletion failed.' })
+
 			alert(e)
 		} finally {
 			setIsActionLoading(false)

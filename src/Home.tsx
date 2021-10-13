@@ -11,6 +11,7 @@ export const Home = () => {
 			</div>
 			<div className="home-auth-container">
 				<AuthSection />
+				<p className="home-copyright">© 2021 nook by yutaka miyazaki</p>
 			</div>
 		</div>
 	)

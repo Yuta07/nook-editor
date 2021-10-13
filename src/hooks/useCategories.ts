@@ -1,13 +1,15 @@
 import { useCallback, useEffect } from 'react'
 import { PostgrestResponse } from '@supabase/supabase-js'
 
-import { useAuthState } from '../contexts/auth'
-import { CategoryState, useCategoriesDispatch } from '../contexts/categories'
-import { supabase } from '../supabase/supabaseClient'
+import { useAuthState } from 'contexts/auth'
+import { CategoryState, useCategoriesDispatch } from 'contexts/categories'
+import { useUIDispatch } from 'contexts/ui'
+import { supabase } from 'supabase/supabaseClient'
 
 export const useFetchCategories = () => {
 	const state = useAuthState()
-	const dispatch = useCategoriesDispatch()
+	const categoriesDispatch = useCategoriesDispatch()
+	const uiDispatch = useUIDispatch()
 
 	const user = state?.user
 
@@ -21,9 +23,11 @@ export const useFetchCategories = () => {
 				.eq('user_id', user?.id)
 
 			if (data && !didCancel) {
-				dispatch?.fetchCategories(data)
+				categoriesDispatch?.fetchCategories(data)
 			}
 		} catch (e) {
+			uiDispatch?.showToast({ type: 'ERROR', message: 'Failed to fetch the category list.' })
+
 			alert(e)
 		}
 	}, [state?.loggedIn])

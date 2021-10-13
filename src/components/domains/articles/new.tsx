@@ -8,6 +8,7 @@ import { Button } from 'components/ui/Button'
 import { Input } from 'components/ui/Input'
 import { useAuthState } from 'contexts/auth'
 import { useCategoriesState } from 'contexts/categories'
+import { useUIDispatch } from 'contexts/ui'
 import { supabase } from 'supabase/supabaseClient'
 
 import './new.scss'
@@ -26,6 +27,7 @@ export const ArticleNew = () => {
 
 	const user = useAuthState()?.user
 	const state = useCategoriesState()
+	const uiDispatch = useUIDispatch()
 
 	useEffect(() => {
 		if (state.categories === null) return
@@ -87,11 +89,17 @@ export const ArticleNew = () => {
 				.insert([{ title, word, content, ispublished: isPublish, user_id: user?.id, categories: selectedCategories }])
 
 			if (error) {
+				uiDispatch?.showToast({ type: 'ERROR', message: 'Article creation failed.' })
+
 				alert(error.message)
 			} else {
+				uiDispatch?.showToast({ type: 'SUCCESS', message: 'Successful article creation.' })
+
 				history.push('/')
 			}
 		} catch (e) {
+			uiDispatch?.showToast({ type: 'ERROR', message: 'Article creation failed.' })
+
 			alert(e)
 		} finally {
 			setIsLoading(false)

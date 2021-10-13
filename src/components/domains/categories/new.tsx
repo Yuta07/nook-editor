@@ -1,10 +1,11 @@
 import React, { useCallback, useEffect, useState } from 'react'
 
-import { useAuthState } from 'contexts/auth'
-import { CategoryState, useCategoriesDispatch } from 'contexts/categories'
-import { supabase } from 'supabase/supabaseClient'
 import { Button } from 'components/ui/Button'
 import { Input } from 'components/ui/Input'
+import { useAuthState } from 'contexts/auth'
+import { CategoryState, useCategoriesDispatch } from 'contexts/categories'
+import { useUIDispatch } from 'contexts/ui'
+import { supabase } from 'supabase/supabaseClient'
 
 import './new.scss'
 
@@ -17,7 +18,8 @@ export const New = () => {
 	const [isUploading, setIsUploading] = useState(false)
 
 	const user = useAuthState()?.user
-	const dispatch = useCategoriesDispatch()
+	const categoriesDispatch = useCategoriesDispatch()
+	const uiDispatch = useUIDispatch()
 
 	useEffect(() => {
 		async function init() {
@@ -89,7 +91,9 @@ export const New = () => {
 				alert(error)
 			} else {
 				const category = data as CategoryState[]
-				dispatch?.createCategory(category[0])
+
+				uiDispatch?.showToast({ type: 'SUCCESS', message: 'Successful category creation.' })
+				categoriesDispatch?.createCategory(category[0])
 
 				setName('')
 				setDescription('')
@@ -97,6 +101,8 @@ export const New = () => {
 				setImageUrl(null)
 			}
 		} catch (e) {
+			uiDispatch?.showToast({ type: 'ERROR', message: 'Category creation failed.' })
+
 			alert(e)
 		} finally {
 			setIsLoading(false)
@@ -121,6 +127,10 @@ export const New = () => {
 					rows={2}
 					placeholder="category description"
 					className="category-new-description"
+					autoComplete="off"
+					autoCorrect="off"
+					autoCapitalize="off"
+					spellCheck="false"
 					onChange={handleTextareaChange}
 				/>
 				<div className="category-new-image-container">

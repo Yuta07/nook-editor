@@ -39,10 +39,14 @@ export const Account = () => {
 				alert(error)
 			} else {
 				if (data) {
+					uiDispatch?.showToast({ type: 'SUCCESS', message: 'Successful change of email address.' })
+
 					authDispatch?.updateAuth(data)
 				}
 			}
 		} catch (e) {
+			uiDispatch?.showToast({ type: 'ERROR', message: 'Failed to change email address.' })
+
 			alert(e)
 		} finally {
 			setIsLoading(false)
