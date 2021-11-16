@@ -7,7 +7,7 @@ import { AuthProviderContainer } from './contexts/auth'
 import { CategoriesProviderContainer } from './contexts/categories'
 import { UIProviderContainer } from './contexts/ui'
 
-import 'styles/global.scss'
+import './styles/global.scss'
 
 ReactDOM.render(
 	<Router>
