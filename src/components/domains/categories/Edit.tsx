@@ -2,12 +2,12 @@ import { useCallback, useEffect, useState } from 'react'
 import { useHistory, useParams } from 'react-router-dom'
 import { FaCamera } from 'react-icons/fa'
 
-import { Button } from 'components/ui/Button'
-import { Input } from 'components/ui/Input'
-import { useAuthState } from 'contexts/auth'
-import { CategoryState, useCategoriesDispatch, useCategoriesState } from 'contexts/categories'
-import { useUIDispatch } from 'contexts/ui'
-import { supabase } from 'supabase/supabaseClient'
+import { Button } from '../../ui/Button'
+import { Input } from '../../ui/Input'
+import { useAuthState } from '../../../contexts/auth'
+import { CategoryState, useCategoriesDispatch, useCategoriesState } from '../../../contexts/categories'
+import { useUIDispatch } from '../../../contexts/ui'
+import { supabase } from '../../../supabase/supabaseClient'
 
 import './edit.scss'
 

@@ -1,7 +1,7 @@
 import { Link } from 'react-router-dom'
 
-import { useCategoriesState } from 'contexts/categories'
-import { ArticleType } from 'types'
+import { useCategoriesState } from '../../../contexts/categories'
+import { ArticleType } from '../../../types'
 
 import './list.scss'
 

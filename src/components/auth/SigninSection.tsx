@@ -1,11 +1,11 @@
 import React, { useCallback, useEffect, useState } from 'react'
 
-import { Button } from 'components/ui/Button'
-import { InputWithLabel } from 'components/ui/Input'
-import { Loading } from 'components/ui/Loading'
-import { useAuthDispatch } from 'contexts/auth'
-import { useUIDispatch } from 'contexts/ui'
-import { supabase } from 'supabase/supabaseClient'
+import { Button } from '../../components/ui/Button'
+import { InputWithLabel } from '../../components/ui/Input'
+import { Loading } from '../../components/ui/Loading'
+import { useAuthDispatch } from '../../contexts/auth'
+import { useUIDispatch } from '../../contexts/ui'
+import { supabase } from '../../supabase/supabaseClient'
 
 import './signinSection.scss'
 

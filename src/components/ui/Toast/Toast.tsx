@@ -2,7 +2,7 @@ import { useCallback, useEffect } from 'react'
 import { FaExclamationCircle, FaRegCheckCircle } from 'react-icons/fa'
 import classnames from 'classnames'
 
-import { useUIDispatch, useUIState, ToastType } from 'contexts/ui'
+import { useUIDispatch, useUIState, ToastType } from '../../../contexts/ui'
 
 import './toast.scss'
 

@@ -2,10 +2,10 @@ import { useCallback, useEffect, useState } from 'react'
 import { useLocation, useParams } from 'react-router-dom'
 import { PostgrestResponse, PostgrestSingleResponse } from '@supabase/supabase-js'
 
-import { useAuthState } from 'contexts/auth'
-import { useUIDispatch } from 'contexts/ui'
-import { supabase } from 'supabase/supabaseClient'
-import { ArticleType } from 'types'
+import { useAuthState } from '../contexts/auth'
+import { useUIDispatch } from '../contexts/ui'
+import { supabase } from '../supabase/supabaseClient'
+import { ArticleType } from '../types'
 
 export const useFetchArticles = () => {
 	const [articles, setArticles] = useState<ArticleType[] | null>(null)

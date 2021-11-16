@@ -3,9 +3,9 @@ import ReactDOM from 'react-dom'
 import { BrowserRouter as Router } from 'react-router-dom'
 
 import { App } from './App'
-import { AuthProviderContainer } from 'contexts/auth'
-import { CategoriesProviderContainer } from 'contexts/categories'
-import { UIProviderContainer } from 'contexts/ui'
+import { AuthProviderContainer } from './contexts/auth'
+import { CategoriesProviderContainer } from './contexts/categories'
+import { UIProviderContainer } from './contexts/ui'
 
 import 'styles/global.scss'
 

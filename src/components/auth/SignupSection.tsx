@@ -1,12 +1,12 @@
 import React, { useCallback, useEffect, useState } from 'react'
 import { FaRegCheckCircle } from 'react-icons/fa'
 
-import { useAuthDispatch } from 'contexts/auth'
-import { useUIDispatch } from 'contexts/ui'
-import { Button } from 'components/ui/Button'
-import { InputWithLabel } from 'components/ui/Input'
-import { Loading } from 'components/ui/Loading'
-import { supabase } from 'supabase/supabaseClient'
+import { useAuthDispatch } from '../../contexts/auth'
+import { useUIDispatch } from '../../contexts/ui'
+import { Button } from '../ui/Button'
+import { InputWithLabel } from '../ui/Input'
+import { Loading } from '../ui/Loading'
+import { supabase } from '../../supabase/supabaseClient'
 
 import './signupSection.scss'
 

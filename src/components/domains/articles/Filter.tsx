@@ -3,8 +3,8 @@ import { useHistory, useLocation } from 'react-router-dom'
 import { FaSearch } from 'react-icons/fa'
 import Select, { SingleValue } from 'react-select'
 
-import { Input } from 'components/ui/Input'
-import { useCategoriesState } from 'contexts/categories'
+import { Input } from '../../ui/Input'
+import { useCategoriesState } from '../../../contexts/categories'
 
 import './filter.scss'
 

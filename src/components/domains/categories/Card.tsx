@@ -2,9 +2,9 @@ import { useCallback, useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
 import { FaRegTrashAlt } from 'react-icons/fa'
 
-import { CategoryState, useCategoriesDispatch } from 'contexts/categories'
-import { useUIDispatch } from 'contexts/ui'
-import { supabase } from 'supabase/supabaseClient'
+import { CategoryState, useCategoriesDispatch } from '../../../contexts/categories'
+import { useUIDispatch } from '../../../contexts/ui'
+import { supabase } from '../../../supabase/supabaseClient'
 
 import './card.scss'
 
