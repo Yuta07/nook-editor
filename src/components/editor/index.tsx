@@ -96,6 +96,14 @@ export const NookEditor = memo(({ content, handleChangeContent }: Props) => {
 			},
 			data: content,
 		})
+
+		return () => {
+			nookEditor.isReady
+				.then(() => {
+					nookEditor.destroy()
+				})
+				.catch((e) => console.error('ERROR editor cleanup', e))
+		}
 	}, [])
 
 	const save = async () => {

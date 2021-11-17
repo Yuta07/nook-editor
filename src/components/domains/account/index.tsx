@@ -1,6 +1,7 @@
 import React, { useCallback, useEffect, useState } from 'react'
+import { useHistory } from 'react-router-dom'
 
-import { useAuthDispatch, useAuthState } from 'contexts/auth'
+import { useAuthDispatch, useAuthState } from '../../../contexts/auth'
 import { useUIDispatch } from '../../../contexts/ui'
 import { Button } from '../../ui/Button'
 import { InputWithLabel } from '../../ui/Input'
@@ -16,6 +17,8 @@ export const Account = () => {
 
 	const authDispatch = useAuthDispatch()
 	const uiDispatch = useUIDispatch()
+
+	const history = useHistory()
 
 	useEffect(() => {
 		if (state && state.user && state.user.email) {
@@ -60,6 +63,8 @@ export const Account = () => {
 				uiDispatch?.showToast({ type: 'SUCCESS', message: 'Logged out.' })
 
 				authDispatch?.removeAuth()
+
+				history.push('/')
 			})
 			.catch((e) => {
 				uiDispatch?.showToast({ type: 'ERROR', message: 'Logout failure.' })
@@ -71,6 +76,7 @@ export const Account = () => {
 	const handleClickDeleteAccount = useCallback(async () => {
 		if (window.confirm('Are you sure?')) {
 			if (state && state.user) {
+				await supabase.from('articles').delete().eq('user_id', state.user.id)
 				const { error } = await supabase.rpc('deleteUser', { id: state.user.id })
 
 				if (error) {
