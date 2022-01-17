@@ -12,3 +12,13 @@ export type ArticleType = {
 	content: OutputData | null
 	categories: number[]
 }
+
+export type NoteType = {
+	id: number
+	slug: string
+	title: string
+	description: string
+	created_at: Date
+	updated_at: Date
+	user_id: string
+}

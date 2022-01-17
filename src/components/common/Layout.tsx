@@ -1,8 +1,9 @@
 import { ReactNode, VFC } from 'react'
 
-import { Header } from './Header'
-import { Toast } from '../ui/Toast'
 import { useFetchCategories } from '../../hooks/useCategories'
+import { Toast } from '../ui/Toast'
+
+import { Header } from './Header'
 
 import './layout.scss'
 

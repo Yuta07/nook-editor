@@ -1,5 +1,5 @@
-import { ComponentPropsWithRef, forwardRef } from 'react'
 import classnames from 'classnames'
+import { ComponentPropsWithRef, forwardRef } from 'react'
 
 import './Input.scss'
 

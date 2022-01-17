@@ -1,9 +1,10 @@
 import { Link } from 'react-router-dom'
 
+import { useFetchArticles } from '../../../hooks/useArticles'
+import { Spinner } from '../../ui/Spinner'
+
 import { Filter } from './Filter'
 import { List } from './List'
-import { Spinner } from '../../ui/Spinner'
-import { useFetchArticles } from '../../../hooks/useArticles'
 
 import './articles.scss'
 

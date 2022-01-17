@@ -1,16 +1,16 @@
-import { memo, useCallback, useEffect } from 'react'
-import EditorJS, { OutputData } from '@editorjs/editorjs'
 
 import Checklist from '@editorjs/checklist'
 import CodeTool from '@editorjs/code'
+import EditorJS, { OutputData } from '@editorjs/editorjs'
 import Embed from '@editorjs/embed'
 import Header from '@editorjs/header'
 import ImageTool from '@editorjs/image'
 import InlineCode from '@editorjs/inline-code'
-import Marker from '@editorjs/marker'
 import List from '@editorjs/list'
+import Marker from '@editorjs/marker'
 import Quote from '@editorjs/quote'
 import Warning from '@editorjs/warning'
+import { memo, useCallback, useEffect } from 'react'
 
 import { supabase } from '../../supabase/supabaseClient'
 

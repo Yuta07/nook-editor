@@ -4,7 +4,8 @@ import { Switch, Route, Link } from 'react-router-dom'
 import { Account } from './components/domains/account'
 import { Articles } from './components/domains/articles'
 import { Categories } from './components/domains/categories'
-import { Edit } from './components/domains/categories/Edit'
+import { CategoryEdit } from './components/domains/categories/Edit'
+import { Notes } from './components/domains/notes'
 import { Password } from './components/domains/password'
 
 import './styles/user.scss'
@@ -12,7 +13,8 @@ import './styles/user.scss'
 const routes = [
 	{ path: '/', exact: true, component: Articles },
 	{ path: '/categories', exact: true, component: Categories },
-	{ path: '/categories/:name', exact: false, component: Edit },
+	{ path: '/categories/:name', exact: false, component: CategoryEdit },
+	{ path: '/notes', exact: true, component: Notes },
 	{ path: '/account', exact: false, component: Account },
 	{ path: '/password', exact: false, component: Password },
 ]
@@ -40,6 +42,9 @@ export const User = () => {
 					</Link>
 					<Link to="/categories" className={pathname === '/categories' ? 'user-selected-tab-type' : 'user-tab-type'}>
 						Categories
+					</Link>
+					<Link to="/notes" className={pathname === '/notes' ? 'user-selected-tab-type' : 'user-tab-type'}>
+						Notes
 					</Link>
 				</nav>
 				<nav className="user-settigns-nav">

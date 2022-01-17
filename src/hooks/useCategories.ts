@@ -1,5 +1,5 @@
-import { useCallback, useEffect } from 'react'
 import { PostgrestResponse } from '@supabase/supabase-js'
+import { useCallback, useEffect } from 'react'
 
 import { useAuthState } from '../contexts/auth'
 import { CategoryState, useCategoriesDispatch } from '../contexts/categories'

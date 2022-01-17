@@ -1,10 +1,10 @@
 import React, { useCallback, useState } from 'react'
 
-import { Button } from '../../ui/Button'
-import { InputWithLabel } from '../../ui/Input'
 import { useAuthDispatch } from '../../../contexts/auth'
 import { useUIDispatch } from '../../../contexts/ui'
 import { supabase } from '../../../supabase/supabaseClient'
+import { Button } from '../../ui/Button'
+import { InputWithLabel } from '../../ui/Input'
 
 import './password.scss'
 

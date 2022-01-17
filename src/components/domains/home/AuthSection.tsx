@@ -1,5 +1,5 @@
-import { useCallback, useState, VFC } from 'react'
 import classnames from 'classnames'
+import { useCallback, useState, VFC } from 'react'
 
 import { SigninSection } from '../../auth/SigninSection'
 import { SignupSection } from '../../auth/SignupSection'

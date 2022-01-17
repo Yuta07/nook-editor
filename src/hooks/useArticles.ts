@@ -1,6 +1,6 @@
+import { PostgrestResponse, PostgrestSingleResponse } from '@supabase/supabase-js'
 import { useCallback, useEffect, useState } from 'react'
 import { useLocation, useParams } from 'react-router-dom'
-import { PostgrestResponse, PostgrestSingleResponse } from '@supabase/supabase-js'
 
 import { useAuthState } from '../contexts/auth'
 import { useUIDispatch } from '../contexts/ui'

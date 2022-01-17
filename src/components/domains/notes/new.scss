@@ -1,0 +1,110 @@
+@import '../../../styles/mixin';
+
+.note-new-hero {
+	margin-top: 8px;
+	padding-top: 12px;
+	border-top: 1px solid var(--color-gray);
+	font-size: var(--font-size-l);
+}
+
+.note-new-form {
+	display: flex;
+	flex-direction: column;
+}
+
+.note-new-name {
+	max-width: 480px;
+	margin-top: 12px;
+}
+
+.note-new-description {
+	max-width: 480px;
+	margin-top: 20px;
+	padding: 8px 10px;
+	border: 1px solid var(--color-gray);
+	border-radius: 8px;
+	font-size: var(--font-size-s);
+	letter-spacing: 0.05em;
+	color: var(--color-primary);
+	background: var(--color-secondary);
+	box-shadow: none;
+	resize: none;
+
+	&:focus {
+		outline: none;
+		box-shadow: 0 0 0 1px var(--color-main);
+	}
+
+	::placeholder,
+	::-webkit-input-placeholder,
+	:-ms-input-placeholder {
+		color: var(--color-gray-lighter);
+	}
+}
+
+.note-new-categories-inner {
+	margin-top: 20px;
+	display: flex;
+	align-items: flex-end;
+}
+
+.note-new-category-txt {
+	width: 240px;
+	font-size: var(--font-size-m);
+
+	.note-new-word-emoji,
+	.note-new-category-emoji {
+		font-size: var(--font-size-xl);
+	}
+}
+
+.note-new-categories-select {
+	width: calc(100% - 240px);
+}
+
+.note-new-select__control {
+	min-height: auto !important;
+	border-color: var(--color-gray) !important;
+	border-radius: 8px !important;
+}
+
+.note-new-select__control--is-focused {
+	box-shadow: 0 0 0 1px var(--color-main) !important;
+}
+
+.note-new-select__value-container {
+	padding: 4px 10px !important;
+}
+
+.note-new-select__placeholder {
+	margin: 0 !important;
+	font-size: var(--font-size-s);
+}
+
+.note-new-select__input-container {
+	margin: 0 !important;
+	padding: 0 !important;
+}
+
+.note-new-select__indicator {
+	padding: 6px !important;
+}
+
+.note-new-select__multi-value {
+	margin: 0 2px !important;
+}
+
+.note-new-select__multi-value__label {
+	padding: 2px 4px !important;
+	font-size: var(--font-size-xs);
+}
+
+.note-new-select__multi-value__remove {
+	cursor: pointer;
+}
+
+.note-new-button-container {
+	margin-top: 20px;
+	display: flex;
+	justify-content: flex-end;
+}

@@ -1,17 +1,17 @@
+import { OutputData } from '@editorjs/editorjs'
 import React, { useCallback, useEffect, useState } from 'react'
 import { useHistory } from 'react-router-dom'
 import Select, { MultiValue, ActionMeta } from 'react-select'
-import { OutputData } from '@editorjs/editorjs'
 
-import { NookEditor } from '../../editor'
-import { Button } from '../../ui/Button'
-import { Input } from '../../ui/Input'
-import { Spinner } from '../../ui/Spinner'
 import { useAuthState } from '../../../contexts/auth'
 import { useCategoriesState } from '../../../contexts/categories'
 import { useUIDispatch } from '../../../contexts/ui'
 import { useFetchArticle } from '../../../hooks/useArticles'
 import { supabase } from '../../../supabase/supabaseClient'
+import { NookEditor } from '../../editor'
+import { Button } from '../../ui/Button'
+import { Input } from '../../ui/Input'
+import { Spinner } from '../../ui/Spinner'
 
 import './edit.scss'
 

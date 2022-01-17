@@ -1,6 +1,6 @@
 import { useCallback, useEffect, useState } from 'react'
-import { Link } from 'react-router-dom'
 import { FaRegTrashAlt } from 'react-icons/fa'
+import { Link } from 'react-router-dom'
 
 import { CategoryState, useCategoriesDispatch } from '../../../contexts/categories'
 import { useUIDispatch } from '../../../contexts/ui'

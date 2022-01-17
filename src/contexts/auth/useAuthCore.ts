@@ -1,5 +1,5 @@
-import { useCallback, useReducer } from 'react'
 import { User } from '@supabase/supabase-js'
+import { useCallback, useReducer } from 'react'
 
 export type AuthState =
 	| undefined // before init

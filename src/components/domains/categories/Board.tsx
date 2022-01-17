@@ -1,7 +1,8 @@
 import { VFC } from 'react'
 
-import { Card } from './Card'
 import { CategoryState, useCategoriesState } from '../../../contexts/categories'
+
+import { Card } from './Card'
 
 import './board.scss'
 
@@ -15,7 +16,7 @@ const CategoryListUI: VFC<{ categories: CategoryState[] }> = ({ categories }) =>
 	} else {
 		return (
 			<>
-				<h3 className="category-board-hero">Registered category</h3>
+				<h3 className="category-board-hero">Registered categories</h3>
 				<div className="category-board-card-container">
 					{categories.map((category) => {
 						return <Card key={category.id} category={category} />

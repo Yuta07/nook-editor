@@ -1,9 +1,10 @@
-import { createContext, ReactNode, useEffect, VFC } from 'react'
 import { User } from '@supabase/supabase-js'
+import { createContext, ReactNode, useEffect, VFC } from 'react'
+
+import { supabase } from '../../supabase/supabaseClient'
 
 import { AuthState, useAuthCore } from './useAuthCore'
 
-import { supabase } from '../../supabase/supabaseClient'
 
 type Props = {
 	children: ReactNode

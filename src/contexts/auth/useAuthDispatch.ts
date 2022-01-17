@@ -1,4 +1,5 @@
 import { useContext } from 'react'
+
 import { AuthDispatchContext } from './AuthProviderContainer'
 
 export const useAuthDispatch = () => {

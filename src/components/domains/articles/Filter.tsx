@@ -1,10 +1,10 @@
 import React, { useCallback, useEffect, useState } from 'react'
-import { useHistory, useLocation } from 'react-router-dom'
 import { FaSearch } from 'react-icons/fa'
+import { useHistory, useLocation } from 'react-router-dom'
 import Select, { SingleValue } from 'react-select'
 
-import { Input } from '../../ui/Input'
 import { useCategoriesState } from '../../../contexts/categories'
+import { Input } from '../../ui/Input'
 
 import './filter.scss'
 

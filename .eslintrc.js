@@ -16,13 +16,15 @@ module.exports = {
 		},
 		project: ['tsconfig.json'],
 	},
-	plugins: ['react'],
 	extends: [
 		'eslint:recommended',
 		'plugin:react/recommended',
 		'plugin:@typescript-eslint/recommended-requiring-type-checking',
+		'plugin:import/recommended',
+		'plugin:import/typescript',
 		'prettier',
 	],
+	plugins: ['@typescript-eslint', 'import'],
 	rules: {
 		'no-unused-vars': ['error', { vars: 'all', args: 'none', ignoreRestSiblings: false }],
 		'react/display-name': 'off',
@@ -31,6 +33,24 @@ module.exports = {
 		'@typescript-eslint/no-var-requires': 'off',
 		'@typescript-eslint/no-inner-declarations': 'off',
 		'@typescript-eslint/no-unused-vars': 'off',
+		'import/order': [
+			'warn',
+			{
+				groups: ['builtin', 'external', 'parent', 'index', 'sibling', 'object', 'type'],
+				pathGroups: [
+					{
+						pattern: '@alias/**',
+						group: 'parent',
+						position: 'after',
+					},
+				],
+				alphabetize: {
+					order: 'asc',
+					caseInsensitive: true,
+				},
+				'newlines-between': 'always',
+			},
+		],
 	},
 	settings: {
 		react: {

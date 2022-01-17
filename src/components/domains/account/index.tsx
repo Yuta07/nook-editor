@@ -3,9 +3,9 @@ import { useHistory } from 'react-router-dom'
 
 import { useAuthDispatch, useAuthState } from '../../../contexts/auth'
 import { useUIDispatch } from '../../../contexts/ui'
+import { supabase } from '../../../supabase/supabaseClient'
 import { Button } from '../../ui/Button'
 import { InputWithLabel } from '../../ui/Input'
-import { supabase } from '../../../supabase/supabaseClient'
 
 import './account.scss'
 
